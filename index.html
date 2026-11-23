@@ -1,0 +1,4216 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Outpost CRM</title>
+  <style>
+    /* ==========================================================================
+       OUTPOST CRM — NAVY & CRISP WHITE DESIGN SYSTEM (100% OFFLINE)
+       ========================================================================== */
+    :root {
+      --navy-950: #0f1d30;
+      --navy-900: #16263d;
+      --navy-800: #1e3352;
+      --navy-700: #294369;
+      --navy-border: rgba(255, 255, 255, 0.09);
+
+      --bg-canvas: #f4f6f9;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f8fafc;
+      --bg-hover: #f1f5f9;
+
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+
+      --emerald-600: #16a34a;
+      --emerald-700: #15803d;
+      --emerald-50: #f0fdf4;
+      --emerald-100: #dcfce7;
+
+      --blue-600: #2563eb;
+      --blue-50: #eff6ff;
+      --purple-600: #7c3aed;
+      --purple-50: #f5f3ff;
+      --amber-500: #f59e0b;
+      --amber-600: #d97706;
+      --amber-50: #fffbeb;
+      --orange-600: #ea580c;
+      --orange-50: #fff7ed;
+      --red-600: #dc2626;
+      --red-50: #fef2f2;
+      --slate-500: #64748b;
+
+      --sidebar-w: 238px;
+      --topbar-h: 58px;
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 10px;
+      --radius-xl: 12px;
+
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04);
+      --shadow-lg: 0 18px 40px rgba(15, 23, 42, 0.16), 0 4px 12px rgba(15, 23, 42, 0.06);
+
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--text-primary);
+      background: var(--bg-canvas);
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
+
+    .tabular { font-variant-numeric: tabular-nums; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    /* ==========================================================================
+       APP SHELL & NAVY SIDEBAR
+       ========================================================================== */
+    .app-shell {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: var(--sidebar-w);
+      min-width: var(--sidebar-w);
+      background: linear-gradient(180deg, var(--navy-900) 0%, var(--navy-950) 100%);
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      user-select: none;
+      z-index: 40;
+      transition: transform 0.2s ease;
+    }
+
+    .sidebar-brand {
+      height: var(--topbar-h);
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--navy-border);
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #2563eb 0%, #16a34a 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .sidebar-user-wrap {
+      padding: 12px 12px 10px;
+      border-bottom: 1px solid var(--navy-border);
+    }
+
+    .sidebar-user-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      text-align: left;
+      transition: background 0.14s, border-color 0.14s;
+    }
+
+    .sidebar-user-btn:hover {
+      background: rgba(255, 255, 255, 0.11);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .user-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 99px;
+      background: #2563eb;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .user-meta { min-width: 0; flex: 1; }
+    .user-meta-name {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user-meta-sub {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .sidebar-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .sidebar-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .nav-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 11px;
+      border-radius: var(--radius-md);
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 500;
+      text-align: left;
+      transition: background 0.12s, color 0.12s;
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+    }
+
+    .nav-item.active {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: inset 3px 0 0 #22c55e;
+    }
+
+    .nav-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .nav-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+
+    .nav-item.active .nav-icon { opacity: 1; }
+
+    .nav-badge {
+      font-size: 11px;
+      font-weight: 600;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1px 7px;
+      border-radius: 99px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .sidebar-shortcuts {
+      border-top: 1px solid var(--navy-border);
+      padding-top: 12px;
+    }
+
+    .sidebar-section-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #64748b;
+      padding: 0 11px 6px;
+    }
+
+    .shortcut-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 11px;
+      border-radius: var(--radius-md);
+      color: #cbd5e1;
+      font-size: 12.5px;
+      font-weight: 500;
+      text-align: left;
+      transition: background 0.12s, color 0.12s;
+    }
+
+    .shortcut-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+    }
+
+    .shortcut-item.active {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .shortcut-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 99px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .shortcut-badge.neutral { background: rgba(255, 255, 255, 0.12); color: #e2e8f0; }
+    .shortcut-badge.red { background: rgba(239, 68, 68, 0.22); color: #fca5a5; }
+    .shortcut-badge.blue { background: rgba(59, 130, 246, 0.25); color: #93c5fd; }
+
+    /* ==========================================================================
+       MAIN AREA & TOP HEADER BAR
+       ========================================================================== */
+    .main-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: 100%;
+      background: var(--bg-canvas);
+    }
+
+    .topbar {
+      height: var(--topbar-h);
+      min-height: var(--topbar-h);
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 20;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+    }
+
+    .topbar-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .search-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      height: 34px;
+      min-width: 230px;
+      padding: 0 11px;
+      border-radius: var(--radius-md);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 12.5px;
+      transition: border-color 0.12s, background 0.12s;
+    }
+
+    .search-trigger:hover {
+      border-color: var(--border-strong);
+      background: #ffffff;
+    }
+
+    .kbd {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 5px;
+      box-shadow: 0 1px 0 var(--border);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
+
+    .view-toggle {
+      display: inline-flex;
+      align-items: center;
+      background: var(--bg-canvas);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2px;
+      height: 34px;
+    }
+
+    .view-toggle-btn {
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.12s;
+    }
+
+    .view-toggle-btn.active {
+      background: #ffffff;
+      color: var(--text-primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .currency-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      position: relative;
+    }
+
+    .currency-pill {
+      display: inline-flex;
+      align-items: center;
+      background: var(--bg-canvas);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2px;
+      height: 34px;
+    }
+
+    .currency-btn {
+      padding: 4px 9px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .currency-btn.active {
+      background: #ffffff;
+      color: var(--text-primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .rate-btn {
+      height: 34px;
+      padding: 0 9px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text-secondary);
+      font-size: 11.5px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .rate-btn:hover { background: var(--bg-subtle); border-color: var(--border-strong); }
+
+    .btn-emerald {
+      height: 34px;
+      padding: 0 14px;
+      border-radius: var(--radius-md);
+      background: var(--emerald-600);
+      color: #ffffff;
+      font-size: 12.5px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      box-shadow: var(--shadow-sm);
+      transition: background 0.12s;
+    }
+    .btn-emerald:hover { background: var(--emerald-700); }
+
+    .btn-secondary {
+      height: 34px;
+      padding: 0 12px;
+      border-radius: var(--radius-md);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 12.5px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: background 0.12s, border-color 0.12s;
+    }
+    .btn-secondary:hover { background: var(--bg-subtle); border-color: var(--border-strong); }
+
+    .btn-danger {
+      height: 34px;
+      padding: 0 13px;
+      border-radius: var(--radius-md);
+      background: var(--red-600);
+      color: #ffffff;
+      font-size: 12.5px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .btn-danger:hover { background: #b91c1c; }
+
+    .btn-danger-soft {
+      height: 34px;
+      padding: 0 13px;
+      border-radius: var(--radius-md);
+      background: var(--red-50);
+      border: 1px solid #fecaca;
+      color: var(--red-600);
+      font-size: 12.5px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-danger-soft:hover { background: #fee2e2; }
+
+    .view-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .view-scroll {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================================================
+       EMPTY STATES
+       ========================================================================== */
+    .empty-state {
+      max-width: 480px;
+      margin: 48px auto;
+      padding: 32px 28px;
+      background: #ffffff;
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .empty-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 14px;
+      border-radius: 12px;
+      background: var(--bg-canvas);
+      color: var(--navy-900);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .empty-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .empty-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       SECTION 1: ÚKOLY (BOARD + TIMELINE + LIST)
+       ========================================================================== */
+    .sub-toolbar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .sub-toolbar-stats {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .sub-toolbar-stats strong { color: var(--text-primary); }
+
+    .board-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(252px, 1fr));
+      gap: 12px;
+      padding: 16px 20px;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    .board-col {
+      display: flex;
+      flex-direction: column;
+      background: #eef2f6;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      min-height: 0;
+      max-height: 100%;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .board-col.col-today {
+      background: #ffffff;
+      border-color: #bfdbfe;
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.06);
+    }
+
+    .board-col.drag-over {
+      border-color: var(--blue-600);
+      background: #eff6ff;
+    }
+
+    .board-col-header {
+      padding: 11px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    }
+
+    .col-title-group {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .col-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      flex-shrink: 0;
+    }
+
+    .col-title { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+
+    .col-count {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      background: rgba(15, 23, 42, 0.08);
+      padding: 1px 7px;
+      border-radius: 99px;
+    }
+
+    .col-add-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .col-add-btn:hover { background: rgba(15, 23, 42, 0.08); color: var(--text-primary); }
+
+    .board-col-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .board-col-empty {
+      padding: 20px 10px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-light);
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .board-col-footer {
+      padding: 7px 10px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-light);
+      border-top: 1px dashed var(--border);
+    }
+
+    /* Task Card */
+    .task-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-top: 3.5px solid var(--slate-500);
+      border-radius: var(--radius-md);
+      padding: 10px 11px;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s, opacity 0.15s;
+    }
+    .task-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+    .task-card.dragging { opacity: 0.4; }
+    .task-card.completed { opacity: 0.58; }
+    .task-card.completed .task-title { text-decoration: line-through; color: var(--text-muted); }
+
+    .task-card.accent-overdue { border-top-color: var(--red-600); }
+    .task-card.accent-tomorrow { border-top-color: var(--amber-500); }
+    .task-card.accent-this_week { border-top-color: var(--blue-600); }
+    .task-card.accent-later { border-top-color: var(--slate-500); }
+
+    .task-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .task-check {
+      width: 16px;
+      height: 16px;
+      margin-top: 1px;
+      border-radius: 4px;
+      border: 1.5px solid #94a3b8;
+      background: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.12s;
+    }
+    .task-check:hover { border-color: var(--emerald-600); }
+    .task-check.checked {
+      background: var(--emerald-600);
+      border-color: var(--emerald-600);
+      color: #ffffff;
+    }
+
+    .task-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.35;
+      flex: 1;
+      word-break: break-word;
+    }
+
+    .task-meta-row {
+      margin-top: 7px;
+      margin-left: 24px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .date-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+    .date-chip.overdue {
+      background: var(--red-50);
+      border-color: #fecaca;
+      color: var(--red-600);
+    }
+    .date-chip.today {
+      background: var(--blue-50);
+      border-color: #bfdbfe;
+      color: var(--blue-600);
+    }
+
+    .project-link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: #eef2ff;
+      color: #3730a3;
+      border: 1px solid #c7d2fe;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: background 0.12s;
+    }
+    .project-link-pill:hover { background: #e0e7ff; }
+
+    .task-footer-row {
+      margin-top: 8px;
+      margin-left: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .type-badge {
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .type-call { background: var(--blue-50); color: var(--blue-600); }
+    .type-meeting { background: var(--purple-50); color: var(--purple-600); }
+    .type-email { background: var(--orange-50); color: var(--orange-600); }
+    .type-followup { background: var(--emerald-50); color: var(--emerald-700); }
+
+    /* Today Timeline (08:00 - 17:00) */
+    .timeline-axis-note {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-light);
+      padding-bottom: 5px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .time-block-row {
+      display: flex;
+      align-items: stretch;
+      gap: 8px;
+    }
+
+    .time-gutter {
+      width: 40px;
+      flex-shrink: 0;
+      text-align: right;
+      padding-top: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .time-block-card {
+      flex: 1;
+      border-radius: var(--radius-md);
+      padding: 9px 10px;
+      color: #ffffff;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.12s, box-shadow 0.12s, opacity 0.15s;
+      min-width: 0;
+    }
+    .time-block-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .time-block-card.dragging { opacity: 0.4; }
+    .time-block-card.completed { opacity: 0.58; }
+    .time-block-card.completed .tb-title { text-decoration: line-through; }
+
+    .time-block-card.tb-call { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+    .time-block-card.tb-meeting { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+    .time-block-card.tb-email { background: linear-gradient(135deg, #ea580c, #c2410c); }
+    .time-block-card.tb-followup { background: linear-gradient(135deg, #16a34a, #15803d); }
+
+    .tb-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.3;
+      flex: 1;
+    }
+
+    .tb-sub {
+      margin-top: 5px;
+      margin-left: 24px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.92);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .tb-pill {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 10.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .tb-pill:hover { background: rgba(255, 255, 255, 0.32); }
+
+    .drop-preview-slot {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .drop-preview-box {
+      flex: 1;
+      border: 2px dashed var(--blue-600);
+      background: var(--blue-50);
+      color: var(--blue-600);
+      border-radius: var(--radius-md);
+      padding: 9px 10px;
+      font-size: 11.5px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .timeline-hours-ref {
+      margin-top: 6px;
+      margin-left: 48px;
+      padding: 8px 10px;
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--border-strong);
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      font-size: 11px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ==========================================================================
+       SECTION 2: KALENDÁŘ (MONTHLY CALENDAR + DAY AGENDA)
+       ========================================================================== */
+    .calendar-layout {
+      display: grid;
+      grid-template-columns: 1fr 310px;
+      gap: 16px;
+      padding: 16px 20px 24px;
+      height: 100%;
+      min-height: 0;
+    }
+
+    .calendar-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .calendar-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .calendar-month-title {
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+
+    .calendar-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-subtle);
+    }
+
+    .calendar-weekday {
+      padding: 8px 10px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .calendar-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-auto-rows: minmax(96px, 1fr);
+      overflow-y: auto;
+    }
+
+    .cal-day {
+      border-right: 1px solid #f1f5f9;
+      border-bottom: 1px solid #f1f5f9;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      background: #ffffff;
+      transition: background 0.12s;
+      min-width: 0;
+    }
+    .cal-day:nth-child(7n) { border-right: none; }
+    .cal-day:hover { background: #f8fafc; }
+    .cal-day.other-month { background: #fafbfd; color: var(--text-light); }
+    .cal-day.selected { background: #eff6ff; box-shadow: inset 0 0 0 2px var(--blue-600); }
+
+    .cal-day-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cal-day-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 99px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cal-day.is-today .cal-day-num {
+      background: var(--blue-600);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .cal-day-add {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      color: var(--text-light);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      opacity: 0;
+      transition: opacity 0.12s, background 0.12s;
+    }
+    .cal-day:hover .cal-day-add { opacity: 1; }
+    .cal-day-add:hover { background: var(--emerald-100); color: var(--emerald-700); }
+
+    .cal-chip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+    }
+    .cal-chip.call { background: #dbeafe; color: #1d4ed8; }
+    .cal-chip.meeting { background: #ede9fe; color: #6d28d9; }
+    .cal-chip.email { background: #ffedd5; color: #c2410c; }
+    .cal-chip.followup { background: #dcfce7; color: #15803d; }
+    .cal-chip.project-close { background: #fef3c7; color: #92400e; border: 1px dashed #f59e0b; }
+    .cal-chip.completed { opacity: 0.5; text-decoration: line-through; }
+
+    .agenda-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .agenda-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .agenda-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* ==========================================================================
+       SECTION 3–6: TABLES, PIPELINE, CARDS, PROGNÓZA
+       ========================================================================== */
+    .page-pad { padding: 18px 20px 24px; }
+
+    .card-surface {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .pipeline-header-grid {
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .pipeline-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 14px 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stage-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .stage-legend-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--bg-subtle);
+      border: 1px solid transparent;
+    }
+    .stage-legend-btn.active { border-color: var(--navy-900); background: #eef2ff; }
+
+    .pipeline-bar {
+      display: flex;
+      gap: 3px;
+      height: 22px;
+      background: var(--bg-canvas);
+      border-radius: 6px;
+      padding: 2px;
+      overflow: hidden;
+    }
+
+    .pipeline-seg {
+      height: 100%;
+      border-radius: 4px;
+      min-width: 6px;
+      transition: opacity 0.15s;
+      cursor: pointer;
+    }
+
+    .tick-bar {
+      display: flex;
+      gap: 2.5px;
+      height: 14px;
+      margin-top: 10px;
+    }
+    .tick { flex: 1; border-radius: 2px; background: #e2e8f0; }
+    .tick.won { background: var(--emerald-600); }
+    .tick.likely { background: #86efac; }
+
+    .table-toolbar {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tabs-bar { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .tab-pill {
+      padding: 5px 11px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: transparent;
+    }
+    .tab-pill:hover { background: var(--bg-hover); color: var(--text-primary); }
+    .tab-pill.active { background: var(--navy-900); color: #ffffff; }
+
+    .table-wrap { width: 100%; overflow-x: auto; }
+
+    .crm-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      min-width: 820px;
+    }
+
+    .crm-table th {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-subtle);
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .crm-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .crm-table tbody tr { cursor: pointer; transition: background 0.1s; }
+    .crm-table tbody tr:hover { background: #f8fafc; }
+
+    .code-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #e2e8f0;
+    }
+    .code-badge.qi { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+    .code-badge.pohoda { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
+
+    .stage-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 99px;
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+
+    .summary-footer {
+      padding: 10px 16px;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .summary-footer strong { color: var(--text-primary); }
+
+    /* Forecast KPIs & Charts */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .kpi-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .kpi-label { font-size: 12px; font-weight: 600; color: var(--text-muted); }
+    .kpi-val { font-size: 22px; font-weight: 700; margin-top: 6px; color: var(--text-primary); letter-spacing: -0.02em; }
+    .kpi-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 4px; }
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 16px;
+    }
+
+    .bar-row { margin-bottom: 12px; }
+    .bar-top { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; }
+    .bar-track { height: 10px; background: var(--bg-canvas); border-radius: 99px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 99px; transition: width 0.3s ease; }
+
+    /* ==========================================================================
+       RIGHT DETAIL PANEL (DRAWER), MODALS, POPOVERS & TOAST
+       ========================================================================== */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.28);
+      z-index: 60;
+      display: none;
+      justify-content: flex-end;
+    }
+    .drawer-overlay.open { display: flex; }
+
+    .drawer {
+      width: 100%;
+      max-width: 470px;
+      height: 100%;
+      background: #ffffff;
+      border-left: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      animation: drawerSlide 0.16s ease-out;
+    }
+
+    @keyframes drawerSlide {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+
+    .panel-header {
+      padding: 15px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .panel-title { font-size: 15.5px; font-weight: 700; color: var(--text-primary); }
+    .panel-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+
+    .panel-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .panel-footer {
+      padding: 13px 18px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.42);
+      backdrop-filter: blur(2px);
+      z-index: 70;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .overlay.open { display: flex; }
+
+    .modal {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 540px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .form-field { display: flex; flex-direction: column; gap: 5px; }
+    .form-label { font-size: 11.5px; font-weight: 600; color: var(--text-secondary); }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: #ffffff;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.12s, box-shadow 0.12s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--blue-600);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .form-section-box {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .type-btn-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .type-pick-btn {
+      padding: 8px 6px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all 0.12s;
+    }
+    .type-pick-btn:hover { background: var(--bg-subtle); }
+    .type-pick-btn.active {
+      border-color: var(--blue-600);
+      background: var(--blue-50);
+      color: var(--blue-600);
+    }
+
+    .linked-list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: #ffffff;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .linked-list-item:hover { background: var(--bg-subtle); }
+
+    /* Popover */
+    .popover {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 12px;
+      z-index: 80;
+      display: none;
+      width: 240px;
+    }
+    .popover.open { display: block; }
+
+    /* Command Palette */
+    .cmd-modal { max-width: 580px; align-self: flex-start; margin-top: 8vh; }
+    .cmd-input-row { display: flex; align-items: center; gap: 10px; padding: 13px 16px; border-bottom: 1px solid var(--border); }
+    .cmd-input { flex: 1; border: none; outline: none; font-size: 14px; }
+    .cmd-results { max-height: 360px; overflow-y: auto; padding: 8px; }
+    .cmd-group { font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--text-light); padding: 6px 10px 4px; }
+    .cmd-item { width: 100%; text-align: left; padding: 8px 10px; border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .cmd-item:hover { background: var(--bg-hover); }
+
+    /* Bottom Dark Undo Toast */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 10px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12.5px;
+      font-weight: 500;
+      z-index: 95;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s, transform 0.18s;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+
+    .toast-undo {
+      color: #4ade80;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .toast-undo:hover { background: rgba(255, 255, 255, 0.2); }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .calendar-layout { grid-template-columns: 1fr; overflow-y: auto; }
+      .pipeline-header-grid { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .charts-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        top: 0; left: 0; bottom: 0;
+        transform: translateX(-100%);
+        box-shadow: var(--shadow-lg);
+      }
+      .sidebar.mobile-open { transform: translateX(0); }
+      .mobile-menu-btn { display: inline-flex; }
+      .search-trigger, .rate-btn { display: none; }
+      .form-grid-2 { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- ==================== LEVÝ TMAVOMODRÝ PANEL ==================== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="brand-name">Outpost CRM</div>
+      </div>
+
+      <div class="sidebar-user-wrap">
+        <button class="sidebar-user-btn" id="openProfileModalBtn" title="Profil, záloha JSON a správa dat">
+          <span class="user-avatar" id="sidebarUserInitials">SP</span>
+          <span class="user-meta">
+            <div class="user-meta-name" id="sidebarUserName">Správce (Autor)</div>
+            <div class="user-meta-sub">Záloha & nastavení</div>
+          </span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+      </div>
+
+      <div class="sidebar-scroll">
+        <nav class="nav-list" id="mainNav"></nav>
+
+        <div class="sidebar-shortcuts">
+          <div class="sidebar-section-label">Rychlé filtry úkolů</div>
+          <div class="nav-list" id="taskShortcuts"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ==================== HLAVNÍ PRACOVNÍ PLOCHA ==================== -->
+    <div class="main-area">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <h1 class="topbar-title" id="topbarTitle">Úkoly</h1>
+          <button class="search-trigger" id="searchTriggerBtn">
+            <span style="display:flex; align-items:center; gap:7px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              Hledat projekty, QI, IČO, úkoly...
+            </span>
+            <span class="kbd">Ctrl K</span>
+          </button>
+        </div>
+
+        <div class="topbar-right">
+          <div id="topbarViewControls"></div>
+
+          <div class="currency-group">
+            <div class="currency-pill" role="group" aria-label="Měna">
+              <button class="currency-btn" id="currCzkBtn">Kč</button>
+              <button class="currency-btn" id="currEurBtn">EUR</button>
+            </div>
+            <button class="rate-btn tabular" id="rateBtn" title="Kliknutím změníte směnný kurz">25,20 Kč/€</button>
+            <div class="popover" id="ratePopover">
+              <div style="font-weight:700; margin-bottom:8px;">Kurz CZK / EUR</div>
+              <div class="form-field" style="margin-bottom:10px;">
+                <label class="form-label" for="rateInput">1 EUR v Kč</label>
+                <input type="number" step="0.05" min="1" id="rateInput" class="form-input tabular" />
+              </div>
+              <div style="display:flex; justify-content:flex-end; gap:6px;">
+                <button class="btn-secondary" id="rateCancelBtn" style="height:28px; font-size:12px;">Zavřít</button>
+                <button class="btn-emerald" id="rateSaveBtn" style="height:28px; font-size:12px;">Uložit</button>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-emerald" id="topbarPrimaryCta">+ Nový úkol</button>
+        </div>
+      </header>
+
+      <main class="view-container" id="viewContainer"></main>
+    </div>
+  </div>
+
+  <!-- ==================== PRAVÝ DETAILNÍ PANEL ==================== -->
+  <div class="drawer-overlay" id="drawerOverlay">
+    <div class="drawer">
+      <div class="panel-header">
+        <div style="min-width:0;">
+          <div class="panel-title" id="drawerTitle">Detail</div>
+          <div class="panel-sub" id="drawerSubtitle"></div>
+        </div>
+        <button class="btn-secondary" id="drawerCloseBtn" style="height:30px; padding:0 9px;">✕</button>
+      </div>
+      <div class="panel-body" id="drawerBody"></div>
+      <div class="panel-footer">
+        <button class="btn-danger" id="drawerDeleteBtn">Smazat</button>
+        <div style="display:flex; gap:8px;">
+          <button class="btn-secondary" id="drawerCancelBtn">Zavřít</button>
+          <button class="btn-emerald" id="drawerSaveBtn">Uložit změny</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODÁLNÍ OKNO (TVORBA / PROFIL) ==================== -->
+  <div class="overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="panel-header">
+        <div class="panel-title" id="modalTitle">Nový záznam</div>
+        <button class="btn-secondary" id="modalCloseBtn" style="height:30px; padding:0 9px;">✕</button>
+      </div>
+      <form id="modalForm" style="display:flex; flex-direction:column; min-height:0; flex:1;">
+        <div class="panel-body" id="modalBody"></div>
+        <div class="panel-footer" id="modalFooter" style="justify-content:flex-end;">
+          <button type="button" class="btn-secondary" id="modalCancelBtn">Zrušit</button>
+          <button type="submit" class="btn-emerald" id="modalSubmitBtn">Vytvořit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== GLOBÁLNÍ VYHLEDÁVÁNÍ (CTRL+K) ==================== -->
+  <div class="overlay" id="cmdOverlay">
+    <div class="modal cmd-modal">
+      <div class="cmd-input-row">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="cmd-input" id="cmdInput" placeholder="Hledat projekty (vč. QI / Pohoda), úkoly, firmy (IČO/DIČ) a kontakty..." autocomplete="off" />
+        <span class="kbd">ESC</span>
+      </div>
+      <div class="cmd-results" id="cmdResults"></div>
+    </div>
+  </div>
+
+  <!-- ==================== DOLNÍ TOAST S UNDO ==================== -->
+  <div class="toast" id="toastBar">
+    <span id="toastText"></span>
+    <button class="toast-undo" id="toastUndoBtn" style="display:none;">Zpět (Undo)</button>
+  </div>
+
+  <input type="file" id="jsonImportInput" accept=".json" style="display:none;" />
+
+  <script>
+    /* ==========================================================================
+       OUTPOST CRM v2 — CLEAN EMPTY DATABASE & FULL LOGIC
+       ========================================================================== */
+    (function () {
+      'use strict';
+
+      const STORAGE_KEY = 'outpost_crm_v2_clean';
+
+      const STAGES = [
+        { id: 'lead',        label: 'Lead',        color: '#64748b', bg: '#f1f5f9', fg: '#334155' },
+        { id: 'qualified',   label: 'Kvalifikace', color: '#2563eb', bg: '#eff6ff', fg: '#1d4ed8' },
+        { id: 'demo',        label: 'Prezentace',  color: '#7c3aed', bg: '#f5f3ff', fg: '#6d28d9' },
+        { id: 'proposal',    label: 'Nabídka',     color: '#f59e0b', bg: '#fffbeb', fg: '#b45309' },
+        { id: 'negotiation', label: 'Vyjednávání', color: '#ea580c', bg: '#fff7ed', fg: '#c2410c' },
+        { id: 'won',         label: 'Vyhráno',     color: '#16a34a', bg: '#f0fdf4', fg: '#15803d' }
+      ];
+
+      const TASK_COLUMNS = [
+        { id: 'overdue',   label: 'Po termínu',  dot: '#dc2626' },
+        { id: 'today',     label: 'Dnes',        dot: '#2563eb' },
+        { id: 'tomorrow',  label: 'Zítra',       dot: '#f59e0b' },
+        { id: 'this_week', label: 'Tento týden', dot: '#3b82f6' },
+        { id: 'later',     label: 'Později',     dot: '#64748b' }
+      ];
+
+      const TASK_TYPES = {
+        call:     { label: 'Hovor',     badge: 'type-call',     tb: 'tb-call',     chip: 'call',     icon: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>' },
+        meeting:  { label: 'Schůzka',   badge: 'type-meeting',  tb: 'tb-meeting',  chip: 'meeting',  icon: '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>' },
+        email:    { label: 'E-mail',    badge: 'type-email',    tb: 'tb-email',    chip: 'email',    icon: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>' },
+        followup: { label: 'Follow-up', badge: 'type-followup', tb: 'tb-followup', chip: 'followup', icon: '<polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>' }
+      };
+
+      const CZ_MONTHS = ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'];
+
+      // ========================================================================
+      // 100% PRÁZDNÝ VÝCHOZÍ STAV (ZERO DEMO DATA)
+      // ========================================================================
+      function createEmptyState() {
+        return {
+          settings: {
+            userName: 'Správce (Autor)',
+            currency: 'CZK',
+            exchangeRate: 25.20,
+            quarterTargetCZK: 5000000
+          },
+          companies: [],
+          contacts: [],
+          projects: [],
+          tasks: []
+        };
+      }
+
+      let state = loadState();
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (parsed && Array.isArray(parsed.projects) && Array.isArray(parsed.tasks) && Array.isArray(parsed.companies) && Array.isArray(parsed.contacts)) {
+              return parsed;
+            }
+          }
+        } catch (err) {
+          console.warn('Chyba načítání localStorage:', err);
+        }
+        const empty = createEmptyState();
+        saveState(empty);
+        return empty;
+      }
+
+      function saveState(next = state) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+        } catch (err) {
+          console.warn('Chyba ukládání do localStorage:', err);
+        }
+      }
+
+      // ========================================================================
+      // UI STAV
+      // ========================================================================
+      const nowDate = new Date();
+      const ui = {
+        activeView: 'tasks',         // tasks | calendar | projects | companies | contacts | forecast
+        tasksViewMode: 'board',      // board | list
+        tasksFilter: 'all',          // all | mine | overdue | today
+        projectsStageFilter: 'all',
+        projectsTab: 'all',          // all | open | won
+
+        calYear: nowDate.getFullYear(),
+        calMonth: nowDate.getMonth(),
+        calSelectedDate: getTodayStr(),
+        calShowProjectClose: true,
+
+        companySearch: '',
+        contactSearch: '',
+
+        drawerType: null,            // task | project | company | contact
+        drawerId: null,
+        drawerDeleteArmed: false,
+
+        modalMode: null,             // new_task | new_project | new_company | new_contact | profile
+        modalPrefill: {},
+
+        undoTasksSnapshot: null,
+        toastTimer: null,
+
+        dragTaskId: null,
+        dragSourceCol: null,
+        dropInsertIndex: null
+      };
+
+      // ========================================================================
+      // DATUMY, MĚNY A POMOCNÉ FUNKCE
+      // ========================================================================
+      function toYMD(dateObj) {
+        const y = dateObj.getFullYear();
+        const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+        const d = String(dateObj.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+      }
+
+      function getTodayStr() {
+        return toYMD(new Date());
+      }
+
+      function addDaysYMD(baseYMD, deltaDays) {
+        const [y, m, d] = baseYMD.split('-').map(Number);
+        const dt = new Date(y, m - 1, d + deltaDays);
+        return toYMD(dt);
+      }
+
+      function formatDateCZ(ymd) {
+        if (!ymd || !/^\d{4}-\d{2}-\d{2}$/.test(ymd)) return 'Bez data';
+        const [y, m, d] = ymd.split('-');
+        return `${Number(d)}. ${Number(m)}. ${y}`;
+      }
+
+      function diffDaysFromToday(ymd) {
+        if (!ymd) return 999;
+        const [y1, m1, d1] = getTodayStr().split('-').map(Number);
+        const [y2, m2, d2] = ymd.split('-').map(Number);
+        const t1 = Date.UTC(y1, m1 - 1, d1);
+        const t2 = Date.UTC(y2, m2 - 1, d2);
+        return Math.round((t2 - t1) / 86400000);
+      }
+
+      function getTaskColumn(task) {
+        const diff = diffDaysFromToday(task.dueDate);
+        if (diff < 0) return 'overdue';
+        if (diff === 0) return 'today';
+        if (diff === 1) return 'tomorrow';
+        if (diff <= 7) return 'this_week';
+        return 'later';
+      }
+
+      function timeStrToMins(str) {
+        if (!str || !str.includes(':')) return null;
+        const [h, m] = str.split(':').map(Number);
+        if (Number.isNaN(h) || Number.isNaN(m)) return null;
+        return h * 60 + m;
+      }
+
+      function minsToTimeStr(mins) {
+        const clamped = Math.max(0, Math.min(23 * 60 + 59, Math.round(mins)));
+        const h = Math.floor(clamped / 60);
+        const m = clamped % 60;
+        return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+      }
+
+      function toActiveCurrency(amount, nativeCurrency) {
+        const val = Number(amount) || 0;
+        const active = state.settings.currency;
+        const rate = Number(state.settings.exchangeRate) || 25.20;
+        if (nativeCurrency === active) return val;
+        if (nativeCurrency === 'EUR' && active === 'CZK') return val * rate;
+        if (nativeCurrency === 'CZK' && active === 'EUR') return val / rate;
+        return val;
+      }
+
+      function formatMoney(amount, currency = state.settings.currency) {
+        const rounded = Math.round(Number(amount) || 0);
+        const str = rounded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
+        return currency === 'EUR' ? `${str}\u00A0€` : `${str}\u00A0Kč`;
+      }
+
+      function formatMoneyCompact(amount, currency = state.settings.currency) {
+        const num = Number(amount) || 0;
+        const abs = Math.abs(num);
+        if (currency === 'EUR') {
+          if (abs >= 1_000_000) return `${(num / 1_000_000).toFixed(2).replace('.', ',')}\u00A0M\u00A0€`;
+          if (abs >= 1_000) return `${Math.round(num / 1_000)}\u00A0tis.\u00A0€`;
+          return `${Math.round(num)}\u00A0€`;
+        }
+        if (abs >= 1_000_000) return `${(num / 1_000_000).toFixed(1).replace('.', ',')}\u00A0M\u00A0Kč`;
+        if (abs >= 1_000) return `${Math.round(num / 1_000)}\u00A0tis.\u00A0Kč`;
+        return `${Math.round(num)}\u00A0Kč`;
+      }
+
+      function escapeHtml(s) {
+        return String(s == null ? '' : s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function getInitials(name) {
+        const parts = String(name || 'SP').replace(/\(.*?\)/g, '').trim().split(/\s+/).filter(Boolean);
+        if (!parts.length) return 'SP';
+        if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+        return (parts[0][0] + parts[1][0]).toUpperCase();
+      }
+
+      function getProject(id) { return state.projects.find(p => p.id === id) || null; }
+      function getCompany(id) { return state.companies.find(c => c.id === id) || null; }
+      function getStage(id) { return STAGES.find(s => s.id === id) || STAGES[0]; }
+
+      function formatProjectLabel(p) {
+        if (!p) return '';
+        const tags = [];
+        if (p.qiName) tags.push(`QI: ${p.qiName}`);
+        if (p.pohodaName) tags.push(`Pohoda: ${p.pohodaName}`);
+        return tags.length ? `${p.name} (${tags.join(' | ')})` : p.name;
+      }
+
+      // ========================================================================
+      // TOAST S UNDO
+      // ========================================================================
+      function showToast(text, canUndo = false) {
+        const bar = document.getElementById('toastBar');
+        document.getElementById('toastText').textContent = text;
+        document.getElementById('toastUndoBtn').style.display = canUndo ? 'inline-block' : 'none';
+        bar.classList.add('show');
+        clearTimeout(ui.toastTimer);
+        ui.toastTimer = setTimeout(() => bar.classList.remove('show'), canUndo ? 6500 : 3200);
+      }
+
+      document.getElementById('toastUndoBtn').addEventListener('click', () => {
+        if (ui.undoTasksSnapshot) {
+          state.tasks = JSON.parse(ui.undoTasksSnapshot);
+          ui.undoTasksSnapshot = null;
+          saveState();
+          document.getElementById('toastBar').classList.remove('show');
+          renderAll();
+          showToast('Akce byla vrácena zpět');
+        }
+      });
+
+      // ========================================================================
+      // SIDEBAR & TOPBAR
+      // ========================================================================
+      function renderSidebar() {
+        document.getElementById('sidebarUserName').textContent = state.settings.userName || 'Správce (Autor)';
+        document.getElementById('sidebarUserInitials').textContent = getInitials(state.settings.userName);
+
+        const openTasks = state.tasks.filter(t => !t.completed);
+        const overdueCount = openTasks.filter(t => getTaskColumn(t) === 'overdue').length;
+        const todayCount = openTasks.filter(t => getTaskColumn(t) === 'today').length;
+        const myTasksCount = openTasks.filter(t => (t.owner || '').toLowerCase() === (state.settings.userName || '').toLowerCase()).length;
+
+        const navItems = [
+          { id: 'tasks',     label: 'Úkoly',     count: openTasks.length, icon: '<polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>' },
+          { id: 'calendar',  label: 'Kalendář',  count: null, icon: '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>' },
+          { id: 'projects',  label: 'Projekty',  count: state.projects.length, icon: '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>' },
+          { id: 'companies', label: 'Firmy',     count: state.companies.length, icon: '<path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/>' },
+          { id: 'contacts',  label: 'Kontakty',  count: state.contacts.length, icon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' },
+          { id: 'forecast',  label: 'Prognóza',  count: null, icon: '<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>' }
+        ];
+
+        const navEl = document.getElementById('mainNav');
+        navEl.innerHTML = navItems.map(it => `
+          <button class="nav-item ${ui.activeView === it.id ? 'active' : ''}" data-nav="${it.id}">
+            <span class="nav-item-left">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${it.icon}</svg>
+              <span>${it.label}</span>
+            </span>
+            ${it.count !== null ? `<span class="nav-badge">${it.count}</span>` : ''}
+          </button>
+        `).join('');
+
+        navEl.querySelectorAll('[data-nav]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            ui.activeView = btn.dataset.nav;
+            document.getElementById('sidebar').classList.remove('mobile-open');
+            renderAll();
+          });
+        });
+
+        const shortcuts = [
+          { id: 'mine',    label: 'Moje úkoly',    count: myTasksCount, cls: 'neutral' },
+          { id: 'all',     label: 'Všechny úkoly', count: openTasks.length, cls: 'neutral' },
+          { id: 'overdue', label: 'Po termínu',    count: overdueCount, cls: 'red' },
+          { id: 'today',   label: 'Dnes',          count: todayCount, cls: 'blue' }
+        ];
+
+        const scEl = document.getElementById('taskShortcuts');
+        scEl.innerHTML = shortcuts.map(sc => `
+          <button class="shortcut-item ${ui.activeView === 'tasks' && ui.tasksFilter === sc.id ? 'active' : ''}" data-sc="${sc.id}">
+            <span>${sc.label}</span>
+            <span class="shortcut-badge ${sc.cls}">${sc.count}</span>
+          </button>
+        `).join('');
+
+        scEl.querySelectorAll('[data-sc]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            ui.activeView = 'tasks';
+            ui.tasksFilter = btn.dataset.sc;
+            document.getElementById('sidebar').classList.remove('mobile-open');
+            renderAll();
+          });
+        });
+      }
+
+      function renderTopbar() {
+        const meta = {
+          tasks:     { title: 'Úkoly',     cta: '+ Nový úkol',    modal: 'new_task' },
+          calendar:  { title: 'Kalendář',  cta: '+ Nový úkol',    modal: 'new_task' },
+          projects:  { title: 'Projekty',  cta: '+ Nový projekt', modal: 'new_project' },
+          companies: { title: 'Firmy',     cta: '+ Nová firma',   modal: 'new_company' },
+          contacts:  { title: 'Kontakty',  cta: '+ Nový kontakt', modal: 'new_contact' },
+          forecast:  { title: 'Prognóza',  cta: '+ Nový projekt', modal: 'new_project' }
+        }[ui.activeView] || { title: 'Úkoly', cta: '+ Nový úkol', modal: 'new_task' };
+
+        document.getElementById('topbarTitle').textContent = meta.title;
+        const ctaBtn = document.getElementById('topbarPrimaryCta');
+        ctaBtn.textContent = meta.cta;
+        ctaBtn.dataset.modal = meta.modal;
+
+        const ctrlEl = document.getElementById('topbarViewControls');
+        if (ui.activeView === 'tasks') {
+          ctrlEl.innerHTML = `
+            <div class="view-toggle">
+              <button class="view-toggle-btn ${ui.tasksViewMode === 'board' ? 'active' : ''}" data-tmode="board">Nástěnka</button>
+              <button class="view-toggle-btn ${ui.tasksViewMode === 'list' ? 'active' : ''}" data-tmode="list">Seznam</button>
+            </div>
+          `;
+          ctrlEl.querySelectorAll('[data-tmode]').forEach(b => {
+            b.addEventListener('click', () => {
+              ui.tasksViewMode = b.dataset.tmode;
+              renderAll();
+            });
+          });
+        } else {
+          ctrlEl.innerHTML = '';
+        }
+
+        document.getElementById('currCzkBtn').classList.toggle('active', state.settings.currency === 'CZK');
+        document.getElementById('currEurBtn').classList.toggle('active', state.settings.currency === 'EUR');
+        document.getElementById('rateBtn').textContent = `${Number(state.settings.exchangeRate).toFixed(2).replace('.', ',')} Kč/€`;
+      }
+
+      // ========================================================================
+      // SEKCE 1: ÚKOLY (CHYTRÝ BOARD + ČASOVÁ OSA DNES + SEZNAM)
+      // ========================================================================
+      function computeTodaySchedule(todayTasks) {
+        let cursor = 8 * 60; // 08:00
+        return todayTasks.map(task => {
+          const dur = Number(task.duration) || 30;
+          const pref = timeStrToMins(task.startTime);
+          const start = (pref !== null && pref >= cursor) ? pref : cursor;
+          const end = start + dur;
+          cursor = end + 15;
+          return {
+            task,
+            startMins: start,
+            endMins: end,
+            startStr: minsToTimeStr(start),
+            endStr: minsToTimeStr(end)
+          };
+        });
+      }
+
+      function getFilteredTasks() {
+        let list = [...state.tasks];
+        if (ui.tasksFilter === 'mine') {
+          const me = (state.settings.userName || '').toLowerCase();
+          list = list.filter(t => (t.owner || '').toLowerCase() === me);
+        } else if (ui.tasksFilter === 'overdue') {
+          list = list.filter(t => getTaskColumn(t) === 'overdue');
+        } else if (ui.tasksFilter === 'today') {
+          list = list.filter(t => getTaskColumn(t) === 'today');
+        }
+        return list;
+      }
+
+      function renderTasksView() {
+        const container = document.getElementById('viewContainer');
+        const filtered = getFilteredTasks();
+        const openCount = state.tasks.filter(t => !t.completed).length;
+        const doneCount = state.tasks.filter(t => t.completed).length;
+        const overdueCount = state.tasks.filter(t => !t.completed && getTaskColumn(t) === 'overdue').length;
+
+        const filterLabels = {
+          all: 'Všechny úkoly',
+          mine: 'Moje úkoly',
+          overdue: 'Po termínu',
+          today: 'Dnes'
+        };
+
+        const subToolbar = `
+          <div class="sub-toolbar">
+            <div class="sub-toolbar-stats tabular">
+              <span>Filtr: <strong>${filterLabels[ui.tasksFilter]}</strong></span>
+              <span>·</span>
+              <span>Otevřené: <strong>${openCount}</strong></span>
+              <span>·</span>
+              <span style="color:${overdueCount ? 'var(--red-600)' : 'inherit'};">Po termínu: <strong>${overdueCount}</strong></span>
+              <span>·</span>
+              <span style="color:var(--emerald-700);">Splněné: <strong>${doneCount}</strong></span>
+            </div>
+            <div style="font-size:12px; color:var(--text-muted);">
+              Přetažením karty do <strong>Dnes</strong> vytvoříte časový blok · kliknutím na projekt přejdete do detailu projektu
+            </div>
+          </div>
+        `;
+
+        if (state.tasks.length === 0) {
+          container.innerHTML = `
+            ${subToolbar}
+            <div class="view-scroll">
+              <div class="empty-state">
+                <div class="empty-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                </div>
+                <div class="empty-title">Zatím nemáte žádné úkoly</div>
+                <div class="empty-desc">
+                  Začněte založením prvního úkolu s přesným datem a volitelnou vazbou na projekt. Úkoly se automaticky zařadí do sloupců podle termínu i do kalendáře.
+                </div>
+                <div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap;">
+                  <button class="btn-emerald" id="emptyNewTaskBtn">+ Nový úkol</button>
+                  <button class="btn-secondary" id="emptyGoProjectsBtn">+ Založit projekt</button>
+                </div>
+              </div>
+            </div>
+          `;
+          document.getElementById('emptyNewTaskBtn').addEventListener('click', () => openModal('new_task', { dueDate: getTodayStr() }));
+          document.getElementById('emptyGoProjectsBtn').addEventListener('click', () => openModal('new_project'));
+          return;
+        }
+
+        if (ui.tasksViewMode === 'board') {
+          const colsHtml = TASK_COLUMNS.map(col => {
+            const colTasks = filtered
+              .filter(t => getTaskColumn(t) === col.id)
+              .sort((a, b) => (a.order || 0) - (b.order || 0) || (a.dueDate || '').localeCompare(b.dueDate || ''));
+
+            const isToday = col.id === 'today';
+            const prefillDate = col.id === 'overdue' ? addDaysYMD(getTodayStr(), -1)
+              : col.id === 'today' ? getTodayStr()
+              : col.id === 'tomorrow' ? addDaysYMD(getTodayStr(), 1)
+              : col.id === 'this_week' ? addDaysYMD(getTodayStr(), 3)
+              : addDaysYMD(getTodayStr(), 10);
+
+            let bodyHtml = '';
+            if (isToday) {
+              const scheduled = computeTodaySchedule(colTasks);
+              bodyHtml += `
+                <div class="timeline-axis-note tabular">
+                  <span>Časová osa 08:00 – 17:00</span>
+                  <span>📅 ${formatDateCZ(getTodayStr())}</span>
+                </div>
+              `;
+              if (scheduled.length === 0) {
+                bodyHtml += `<div class="board-col-empty">Přetáhněte sem libovolný úkol a promění se v časový blok.</div>`;
+              } else {
+                scheduled.forEach((slot, idx) => {
+                  const t = slot.task;
+                  const typeMeta = TASK_TYPES[t.type] || TASK_TYPES.call;
+                  const proj = getProject(t.projectId);
+                  bodyHtml += `
+                    <div class="time-block-row" data-slot-index="${idx}">
+                      <div class="time-gutter">${slot.startStr}</div>
+                      <div class="time-block-card ${typeMeta.tb} ${t.completed ? 'completed' : ''}"
+                           draggable="true"
+                           data-task-id="${t.id}"
+                           data-task-col="today"
+                           data-open-task="${t.id}">
+                        <div class="task-top">
+                          <button class="task-check ${t.completed ? 'checked' : ''}" data-toggle-task="${t.id}" title="Splnit úkol">
+                            ${t.completed ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>' : ''}
+                          </button>
+                          <div class="tb-title">${escapeHtml(t.title)}</div>
+                        </div>
+                        <div class="tb-sub tabular">
+                          <span>${slot.startStr}–${slot.endStr} (${t.duration}m)</span>
+                          <span>📅 ${formatDateCZ(t.dueDate)}</span>
+                          ${proj ? `<span class="tb-pill" data-jump-project="${proj.id}" title="Otevřít projekt">📁 ${escapeHtml(proj.name)}</span>` : ''}
+                        </div>
+                      </div>
+                    </div>
+                  `;
+                });
+              }
+              const nextFree = scheduled.length ? minsToTimeStr(scheduled[scheduled.length - 1].endMins + 15) : '08:00';
+              bodyHtml += `
+                <div class="timeline-hours-ref tabular">
+                  <span>Volno od ${nextFree}</span>
+                  <span>→ 17:00</span>
+                </div>
+              `;
+            } else {
+              if (colTasks.length === 0) {
+                bodyHtml = `<div class="board-col-empty">Žádné úkoly v tomto sloupci</div>`;
+              } else {
+                bodyHtml = colTasks.map((t, idx) => {
+                  const typeMeta = TASK_TYPES[t.type] || TASK_TYPES.call;
+                  const proj = getProject(t.projectId);
+                  return `
+                    <div class="task-card accent-${col.id} ${t.completed ? 'completed' : ''}"
+                         draggable="true"
+                         data-task-id="${t.id}"
+                         data-task-col="${col.id}"
+                         data-open-task="${t.id}"
+                         data-slot-index="${idx}">
+                      <div class="task-top">
+                        <button class="task-check ${t.completed ? 'checked' : ''}" data-toggle-task="${t.id}" title="Splnit úkol">
+                          ${t.completed ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>' : ''}
+                        </button>
+                        <div class="task-title">${escapeHtml(t.title)}</div>
+                      </div>
+                      <div class="task-meta-row">
+                        <span class="date-chip ${col.id === 'overdue' ? 'overdue' : ''}">📅 ${formatDateCZ(t.dueDate)}${t.startTime ? ' · ' + escapeHtml(t.startTime) : ''}</span>
+                        ${proj ? `<button class="project-link-pill" data-jump-project="${proj.id}" title="Přejít na projekt">📁 ${escapeHtml(proj.name)}</button>` : ''}
+                      </div>
+                      <div class="task-footer-row">
+                        <span class="type-badge ${typeMeta.badge}">${typeMeta.label} · ${t.duration} min</span>
+                        <span>${escapeHtml(t.owner || state.settings.userName)}</span>
+                      </div>
+                    </div>
+                  `;
+                }).join('');
+              }
+            }
+
+            return `
+              <div class="board-col ${isToday ? 'col-today' : ''}" data-drop-col="${col.id}">
+                <div class="board-col-header">
+                  <div class="col-title-group">
+                    <span class="col-dot" style="background:${col.dot};"></span>
+                    <span class="col-title">${col.label}</span>
+                    <span class="col-count">${colTasks.length}</span>
+                  </div>
+                  <button class="col-add-btn" data-add-col-date="${prefillDate}" title="Přidat úkol do: ${col.label}">+</button>
+                </div>
+                <div class="board-col-body" data-col-body="${col.id}">${bodyHtml}</div>
+                <div class="board-col-footer">${isToday ? 'Přetáhněte sem pro časový blok' : 'Přetáhněte sem pro přeplánování'}</div>
+              </div>
+            `;
+          }).join('');
+
+          container.innerHTML = `${subToolbar}<div class="board-grid">${colsHtml}</div>`;
+          bindTaskBoardEvents(container);
+        } else {
+          // SEZNAM (LIST VIEW)
+          const sorted = [...filtered].sort((a, b) => (a.dueDate || '').localeCompare(b.dueDate || ''));
+          const rowsHtml = sorted.map(t => {
+            const colId = getTaskColumn(t);
+            const typeMeta = TASK_TYPES[t.type] || TASK_TYPES.call;
+            const proj = getProject(t.projectId);
+            return `
+              <tr data-open-task="${t.id}" style="${t.completed ? 'opacity:0.58;' : ''}">
+                <td style="width:40px;" onclick="event.stopPropagation()">
+                  <button class="task-check ${t.completed ? 'checked' : ''}" data-toggle-task="${t.id}">
+                    ${t.completed ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>' : ''}
+                  </button>
+                </td>
+                <td style="font-weight:600; ${t.completed ? 'text-decoration:line-through;' : ''}">${escapeHtml(t.title)}</td>
+                <td><span class="date-chip ${colId === 'overdue' ? 'overdue' : colId === 'today' ? 'today' : ''}">📅 ${formatDateCZ(t.dueDate)}${t.startTime ? ' · ' + escapeHtml(t.startTime) : ''}</span></td>
+                <td><span class="type-badge ${typeMeta.badge}">${typeMeta.label} (${t.duration}m)</span></td>
+                <td onclick="event.stopPropagation()">
+                  ${proj ? `<button class="project-link-pill" data-jump-project="${proj.id}">📁 ${escapeHtml(proj.name)}</button>` : '<span style="color:var(--text-light);">—</span>'}
+                </td>
+                <td>${escapeHtml(t.owner || state.settings.userName)}</td>
+              </tr>
+            `;
+          }).join('');
+
+          container.innerHTML = `
+            ${subToolbar}
+            <div class="view-scroll page-pad">
+              <div class="card-surface">
+                <div class="table-wrap">
+                  <table class="crm-table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Úkol</th>
+                        <th>Datum & čas</th>
+                        <th>Typ / Trvání</th>
+                        <th>Vazba na projekt</th>
+                        <th>Vlastník</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${rowsHtml || `<tr><td colspan="6" style="text-align:center; padding:32px; color:var(--text-muted);">Žádné úkoly neodpovídají zvolenému filtru.</td></tr>`}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          `;
+          bindCommonTaskInteractions(container);
+        }
+      }
+
+      function bindCommonTaskInteractions(container) {
+        container.querySelectorAll('[data-toggle-task]').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const t = state.tasks.find(x => x.id === btn.dataset.toggleTask);
+            if (!t) return;
+            t.completed = !t.completed;
+            saveState();
+            renderAll();
+            showToast(t.completed ? `Úkol „${t.title}“ označen jako splněný` : `Úkol „${t.title}“ znovu otevřen`);
+          });
+        });
+
+        container.querySelectorAll('[data-jump-project]').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const pid = btn.dataset.jumpProject;
+            ui.activeView = 'projects';
+            renderAll();
+            openDrawer('project', pid);
+          });
+        });
+
+        container.querySelectorAll('[data-open-task]').forEach(el => {
+          el.addEventListener('click', () => openDrawer('task', el.dataset.openTask));
+        });
+
+        container.querySelectorAll('[data-add-col-date]').forEach(btn => {
+          btn.addEventListener('click', () => openModal('new_task', { dueDate: btn.dataset.addColDate }));
+        });
+      }
+
+      function bindTaskBoardEvents(container) {
+        bindCommonTaskInteractions(container);
+
+        const draggables = container.querySelectorAll('[draggable="true"][data-task-id]');
+        const cols = container.querySelectorAll('[data-drop-col]');
+
+        function clearDragState() {
+          container.querySelectorAll('.drop-preview-slot').forEach(p => p.remove());
+          cols.forEach(c => c.classList.remove('drag-over'));
+        }
+
+        draggables.forEach(el => {
+          el.addEventListener('dragstart', (e) => {
+            ui.dragTaskId = el.dataset.taskId;
+            ui.dragSourceCol = el.dataset.taskCol;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', ui.dragTaskId);
+            setTimeout(() => el.classList.add('dragging'), 0);
+          });
+          el.addEventListener('dragend', () => {
+            el.classList.remove('dragging');
+            clearDragState();
+            ui.dragTaskId = null;
+            ui.dragSourceCol = null;
+            ui.dropInsertIndex = null;
+          });
+        });
+
+        cols.forEach(colEl => {
+          const colId = colEl.dataset.dropCol;
+          const bodyEl = colEl.querySelector('[data-col-body]');
+
+          colEl.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            if (!ui.dragTaskId) return;
+            cols.forEach(c => { if (c !== colEl) c.classList.remove('drag-over'); });
+            colEl.classList.add('drag-over');
+
+            if (colId === 'today') {
+              const rows = Array.from(bodyEl.querySelectorAll('.time-block-row'));
+              let idx = rows.length;
+              for (let i = 0; i < rows.length; i++) {
+                const r = rows[i].getBoundingClientRect();
+                if (e.clientY < r.top + r.height / 2) { idx = i; break; }
+              }
+              ui.dropInsertIndex = idx;
+
+              const existing = state.tasks
+                .filter(t => getTaskColumn(t) === 'today' && t.id !== ui.dragTaskId)
+                .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+              let cursor = 8 * 60;
+              for (let i = 0; i < Math.min(idx, existing.length); i++) {
+                cursor += (Number(existing[i].duration) || 30) + 15;
+              }
+              const dragged = state.tasks.find(t => t.id === ui.dragTaskId);
+              const dur = dragged ? (Number(dragged.duration) || 30) : 30;
+
+              let prev = bodyEl.querySelector('.drop-preview-slot');
+              if (!prev) {
+                container.querySelectorAll('.drop-preview-slot').forEach(p => p.remove());
+                prev = document.createElement('div');
+                prev.className = 'drop-preview-slot';
+              }
+              prev.innerHTML = `
+                <div class="time-gutter" style="color:var(--blue-600); padding-top:0;">${minsToTimeStr(cursor)}</div>
+                <div class="drop-preview-box">
+                  <span>Vložit časový blok</span>
+                  <span class="tabular">${minsToTimeStr(cursor)}–${minsToTimeStr(cursor + dur)}</span>
+                </div>
+              `;
+              const refEl = bodyEl.querySelector('.timeline-hours-ref');
+              if (idx < rows.length) bodyEl.insertBefore(prev, rows[idx]);
+              else if (refEl) bodyEl.insertBefore(prev, refEl);
+              else bodyEl.appendChild(prev);
+            } else {
+              container.querySelectorAll('.drop-preview-slot').forEach(p => p.remove());
+              ui.dropInsertIndex = null;
+            }
+          });
+
+          colEl.addEventListener('dragleave', (e) => {
+            if (!colEl.contains(e.relatedTarget)) {
+              colEl.classList.remove('drag-over');
+              if (colId === 'today') bodyEl.querySelectorAll('.drop-preview-slot').forEach(p => p.remove());
+            }
+          });
+
+          colEl.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const taskId = ui.dragTaskId || e.dataTransfer.getData('text/plain');
+            const task = state.tasks.find(t => t.id === taskId);
+            clearDragState();
+            if (!task) return;
+
+            ui.undoTasksSnapshot = JSON.stringify(state.tasks);
+
+            const today = getTodayStr();
+            if (colId === 'overdue') task.dueDate = addDaysYMD(today, -1);
+            else if (colId === 'today') task.dueDate = today;
+            else if (colId === 'tomorrow') task.dueDate = addDaysYMD(today, 1);
+            else if (colId === 'this_week') task.dueDate = addDaysYMD(today, 3);
+            else task.dueDate = addDaysYMD(today, 10);
+
+            if (colId !== 'today') {
+              // Convert back to card without forced reflow time
+              task.startTime = '';
+            }
+
+            const siblings = state.tasks
+              .filter(t => getTaskColumn(t) === colId && t.id !== task.id)
+              .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+            const insertAt = (colId === 'today' && ui.dropInsertIndex !== null)
+              ? Math.max(0, Math.min(ui.dropInsertIndex, siblings.length))
+              : siblings.length;
+
+            siblings.splice(insertAt, 0, task);
+            siblings.forEach((t, i) => { t.order = i; });
+
+            // Automatic time reflow for Today
+            if (colId === 'today') {
+              let cursor = 8 * 60;
+              siblings.forEach(t => {
+                t.startTime = minsToTimeStr(cursor);
+                cursor += (Number(t.duration) || 30) + 15;
+              });
+            }
+
+            saveState();
+            renderAll();
+            const colLabel = TASK_COLUMNS.find(c => c.id === colId).label;
+            showToast(`Úkol „${task.title}“ přesunut na ${colLabel} (${formatDateCZ(task.dueDate)})`, true);
+          });
+        });
+      }
+
+      // ========================================================================
+      // SEKCE 2: KALENDÁŘ
+      // ========================================================================
+      function renderCalendarView() {
+        const container = document.getElementById('viewContainer');
+        const year = ui.calYear;
+        const month = ui.calMonth;
+        const todayStr = getTodayStr();
+
+        const firstDay = new Date(year, month, 1);
+        const startOffset = (firstDay.getDay() + 6) % 7; // Monday = 0
+        const gridStart = new Date(year, month, 1 - startOffset);
+
+        const cells = [];
+        for (let i = 0; i < 42; i++) {
+          const d = new Date(gridStart.getFullYear(), gridStart.getMonth(), gridStart.getDate() + i);
+          const ymd = toYMD(d);
+          const isCurrentMonth = d.getMonth() === month;
+          const dayTasks = state.tasks
+            .filter(t => t.dueDate === ymd)
+            .sort((a, b) => (a.startTime || '99:99').localeCompare(b.startTime || '99:99'));
+          const dayProjects = ui.calShowProjectClose
+            ? state.projects.filter(p => p.targetCloseDate === ymd)
+            : [];
+
+          const chipsHtml = [
+            ...dayTasks.map(t => {
+              const tm = TASK_TYPES[t.type] || TASK_TYPES.call;
+              const proj = getProject(t.projectId);
+              return `<div class="cal-chip ${tm.chip} ${t.completed ? 'completed' : ''}" data-cal-task="${t.id}" title="${escapeHtml(t.title)}${proj ? ' · ' + escapeHtml(proj.name) : ''}">${t.startTime ? escapeHtml(t.startTime) + ' ' : ''}${escapeHtml(t.title)}</div>`;
+            }),
+            ...dayProjects.map(p => `<div class="cal-chip project-close" data-cal-proj="${p.id}" title="Termín uzavření projektu: ${escapeHtml(p.name)}">🏁 ${escapeHtml(p.name)}</div>`)
+          ].slice(0, 4).join('');
+
+          const extraCount = (dayTasks.length + dayProjects.length) - 4;
+
+          cells.push(`
+            <div class="cal-day ${!isCurrentMonth ? 'other-month' : ''} ${ymd === todayStr ? 'is-today' : ''} ${ymd === ui.calSelectedDate ? 'selected' : ''}" data-cal-day="${ymd}">
+              <div class="cal-day-top">
+                <span class="cal-day-num tabular">${d.getDate()}</span>
+                <button class="cal-day-add" data-cal-add="${ymd}" title="Nový úkol na ${formatDateCZ(ymd)}">+</button>
+              </div>
+              ${chipsHtml}
+              ${extraCount > 0 ? `<div style="font-size:10.5px; color:var(--text-muted); font-weight:600;">+${extraCount} další</div>` : ''}
+            </div>
+          `);
+        }
+
+        const selDate = ui.calSelectedDate;
+        const selTasks = state.tasks
+          .filter(t => t.dueDate === selDate)
+          .sort((a, b) => (a.startTime || '99:99').localeCompare(b.startTime || '99:99'));
+        const selProjects = ui.calShowProjectClose
+          ? state.projects.filter(p => p.targetCloseDate === selDate)
+          : [];
+
+        const agendaItemsHtml = [
+          ...selTasks.map(t => {
+            const tm = TASK_TYPES[t.type] || TASK_TYPES.call;
+            const proj = getProject(t.projectId);
+            return `
+              <div class="task-card ${t.completed ? 'completed' : ''}" style="border-top-width:3px;" data-open-task="${t.id}">
+                <div class="task-top">
+                  <button class="task-check ${t.completed ? 'checked' : ''}" data-toggle-task="${t.id}">
+                    ${t.completed ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>' : ''}
+                  </button>
+                  <div class="task-title">${escapeHtml(t.title)}</div>
+                </div>
+                <div class="task-meta-row">
+                  <span class="type-badge ${tm.badge}">${tm.label} · ${t.startTime || 'Celý den'} (${t.duration}m)</span>
+                  ${proj ? `<button class="project-link-pill" data-jump-project="${proj.id}">📁 ${escapeHtml(proj.name)}</button>` : ''}
+                </div>
+              </div>
+            `;
+          }),
+          ...selProjects.map(p => `
+            <div class="linked-list-item" data-jump-project="${p.id}" style="border-left:3px solid var(--amber-500);">
+              <div>
+                <div style="font-weight:700;">🏁 Uzavření: ${escapeHtml(p.name)}</div>
+                <div style="font-size:11px; color:var(--text-muted);">${formatMoney(toActiveCurrency(p.value, p.nativeCurrency))}</div>
+              </div>
+              <span class="code-badge">${getStage(p.stage).label}</span>
+            </div>
+          `)
+        ].join('');
+
+        container.innerHTML = `
+          <div class="calendar-layout">
+            <div class="calendar-card">
+              <div class="calendar-header">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <button class="btn-secondary" id="calPrevBtn" style="height:30px; padding:0 10px;">←</button>
+                  <button class="btn-secondary" id="calTodayBtn" style="height:30px; font-size:12px;">Dnes</button>
+                  <button class="btn-secondary" id="calNextBtn" style="height:30px; padding:0 10px;">→</button>
+                  <div class="calendar-month-title" style="margin-left:6px;">${CZ_MONTHS[month]} ${year}</div>
+                </div>
+                <label style="display:flex; align-items:center; gap:7px; font-size:12px; color:var(--text-secondary); cursor:pointer;">
+                  <input type="checkbox" id="calToggleProjects" ${ui.calShowProjectClose ? 'checked' : ''} />
+                  Zobrazit termíny uzavření projektů
+                </label>
+              </div>
+              <div class="calendar-weekdays">
+                <div class="calendar-weekday">Po</div>
+                <div class="calendar-weekday">Út</div>
+                <div class="calendar-weekday">St</div>
+                <div class="calendar-weekday">Čt</div>
+                <div class="calendar-weekday">Pá</div>
+                <div class="calendar-weekday">So</div>
+                <div class="calendar-weekday">Ne</div>
+              </div>
+              <div class="calendar-grid">${cells.join('')}</div>
+            </div>
+
+            <div class="agenda-card">
+              <div class="agenda-header">
+                <div>
+                  <div style="font-weight:700; font-size:14px;">Agenda dne</div>
+                  <div style="font-size:12px; color:var(--text-muted);" class="tabular">📅 ${formatDateCZ(selDate)}</div>
+                </div>
+                <button class="btn-emerald" id="agendaAddBtn" style="height:30px; padding:0 10px; font-size:12px;">+ Úkol</button>
+              </div>
+              <div class="agenda-body">
+                ${agendaItemsHtml || `<div style="text-align:center; padding:28px 12px; color:var(--text-muted); font-size:12.5px;">Na datum ${formatDateCZ(selDate)} nemáte naplánované žádné úkoly.</div>`}
+              </div>
+            </div>
+          </div>
+        `;
+
+        document.getElementById('calPrevBtn').addEventListener('click', () => {
+          ui.calMonth--;
+          if (ui.calMonth < 0) { ui.calMonth = 11; ui.calYear--; }
+          renderCalendarView();
+        });
+        document.getElementById('calNextBtn').addEventListener('click', () => {
+          ui.calMonth++;
+          if (ui.calMonth > 11) { ui.calMonth = 0; ui.calYear++; }
+          renderCalendarView();
+        });
+        document.getElementById('calTodayBtn').addEventListener('click', () => {
+          const n = new Date();
+          ui.calYear = n.getFullYear();
+          ui.calMonth = n.getMonth();
+          ui.calSelectedDate = getTodayStr();
+          renderCalendarView();
+        });
+        document.getElementById('calToggleProjects').addEventListener('change', (e) => {
+          ui.calShowProjectClose = e.target.checked;
+          renderCalendarView();
+        });
+        document.getElementById('agendaAddBtn').addEventListener('click', () => openModal('new_task', { dueDate: ui.calSelectedDate }));
+
+        container.querySelectorAll('[data-cal-day]').forEach(cell => {
+          cell.addEventListener('click', () => {
+            ui.calSelectedDate = cell.dataset.calDay;
+            renderCalendarView();
+          });
+        });
+        container.querySelectorAll('[data-cal-add]').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openModal('new_task', { dueDate: btn.dataset.calAdd });
+          });
+        });
+        container.querySelectorAll('[data-cal-task]').forEach(chip => {
+          chip.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openDrawer('task', chip.dataset.calTask);
+          });
+        });
+        container.querySelectorAll('[data-cal-proj]').forEach(chip => {
+          chip.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openDrawer('project', chip.dataset.calProj);
+          });
+        });
+
+        bindCommonTaskInteractions(container);
+      }
+
+      // ========================================================================
+      // SEKCE 3: PROJEKTY (QI NÁZEV & POHODA NÁZEV)
+      // ========================================================================
+      function renderProjectsView() {
+        const container = document.getElementById('viewContainer');
+
+        if (state.projects.length === 0) {
+          container.innerHTML = `
+            <div class="view-scroll">
+              <div class="empty-state">
+                <div class="empty-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                </div>
+                <div class="empty-title">Zatím nejsou evidovány žádné projekty</div>
+                <div class="empty-desc">
+                  Založte první obchodní projekt včetně polí <strong>QI název</strong> a <strong>Pohoda název</strong>. Na projekty pak můžete přímo navazovat úkoly.
+                </div>
+                <button class="btn-emerald" id="emptyNewProjectBtn">+ Nový projekt</button>
+              </div>
+            </div>
+          `;
+          document.getElementById('emptyNewProjectBtn').addEventListener('click', () => openModal('new_project'));
+          return;
+        }
+
+        const all = state.projects;
+        const wonProjects = all.filter(p => p.stage === 'won');
+        const openProjects = all.filter(p => p.stage !== 'won');
+
+        const totalAll = all.reduce((s, p) => s + toActiveCurrency(p.value, p.nativeCurrency), 0);
+        const wonVal = wonProjects.reduce((s, p) => s + toActiveCurrency(p.value, p.nativeCurrency), 0);
+        const openWeighted = openProjects.reduce((s, p) => s + toActiveCurrency(p.value, p.nativeCurrency) * ((Number(p.probability) || 0) / 100), 0);
+        const target = Math.max(1, toActiveCurrency(state.settings.quarterTargetCZK, 'CZK'));
+
+        const ticksTotal = 36;
+        const wonTicks = Math.min(ticksTotal, Math.round((wonVal / target) * ticksTotal));
+        const likelyTicks = Math.min(ticksTotal, Math.round(((wonVal + openWeighted) / target) * ticksTotal));
+        let ticksHtml = '';
+        for (let i = 0; i < ticksTotal; i++) {
+          ticksHtml += `<div class="tick ${i < wonTicks ? 'won' : i < likelyTicks ? 'likely' : ''}"></div>`;
+        }
+
+        const legendHtml = STAGES.map(st => {
+          const sum = all.filter(p => p.stage === st.id).reduce((s, p) => s + toActiveCurrency(p.value, p.nativeCurrency), 0);
+          return `
+            <button class="stage-legend-btn ${ui.projectsStageFilter === st.id ? 'active' : ''}" data-pstage="${st.id}">
+              <span class="col-dot" style="background:${st.color};"></span>
+              <span style="font-weight:600;">${st.label}</span>
+              <span class="tabular" style="color:var(--text-muted);">${formatMoneyCompact(sum)}</span>
+            </button>
+          `;
+        }).join('');
+
+        const segsHtml = STAGES.map(st => {
+          const sum = all.filter(p => p.stage === st.id).reduce((s, p) => s + toActiveCurrency(p.value, p.nativeCurrency), 0);
+          if (sum <= 0 || totalAll <= 0) return '';
+          const pct = Math.max(2, (sum / totalAll) * 100);
+          const dim = ui.projectsStageFilter !== 'all' && ui.projectsStageFilter !== st.id;
+          return `<div class="pipeline-seg" data-pstage="${st.id}" style="width:${pct}%; background:${st.color}; opacity:${dim ? 0.25 : 1};" title="${st.label}: ${formatMoney(sum)}"></div>`;
+        }).join('');
+
+        let list = [...all];
+        if (ui.projectsTab === 'open') list = list.filter(p => p.stage !== 'won');
+        if (ui.projectsTab === 'won')  list = list.filter(p => p.stage === 'won');
+        if (ui.projectsStageFilter !== 'all') list = list.filter(p => p.stage === ui.projectsStageFilter);
+
+        const viewVal = list.reduce((s, p) => s + toActiveCurrency(p.value, p.nativeCurrency), 0);
+        const viewWeighted = list.reduce((s, p) => s + toActiveCurrency(p.value, p.nativeCurrency) * ((Number(p.probability) || 0) / 100), 0);
+        const avgProb = list.length ? Math.round(list.reduce((s, p) => s + (Number(p.probability) || 0), 0) / list.length) : 0;
+
+        const rowsHtml = list.map(p => {
+          const st = getStage(p.stage);
+          const comp = getCompany(p.companyId);
+          const tasksCount = state.tasks.filter(t => t.projectId === p.id && !t.completed).length;
+          return `
+            <tr data-open-project="${p.id}">
+              <td>
+                <div style="font-weight:700; color:var(--text-primary);">${escapeHtml(p.name)}</div>
+                <div style="font-size:11.5px; color:var(--text-muted);">${comp ? escapeHtml(comp.name) : 'Bez přiřazené firmy'}</div>
+              </td>
+              <td>${p.qiName ? `<span class="code-badge qi">${escapeHtml(p.qiName)}</span>` : '<span style="color:var(--text-light);">—</span>'}</td>
+              <td>${p.pohodaName ? `<span class="code-badge pohoda">${escapeHtml(p.pohodaName)}</span>` : '<span style="color:var(--text-light);">—</span>'}</td>
+              <td><span class="stage-pill" style="background:${st.bg}; color:${st.fg};"><span class="col-dot" style="background:${st.color};"></span>${st.label}</span></td>
+              <td class="tabular" style="text-align:right; font-weight:700;">${formatMoney(toActiveCurrency(p.value, p.nativeCurrency))}</td>
+              <td class="tabular" style="font-weight:600;">${p.probability}\u00A0%</td>
+              <td class="tabular">${p.targetCloseDate ? '📅 ' + formatDateCZ(p.targetCloseDate) : '—'}</td>
+              <td class="tabular">${tasksCount} otevř.</td>
+            </tr>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="view-scroll page-pad">
+            <div class="pipeline-header-grid">
+              <div class="pipeline-box">
+                <div class="stage-legend">${legendHtml}</div>
+                <div class="pipeline-bar">${segsHtml}</div>
+              </div>
+              <div class="pipeline-box">
+                <div style="display:flex; justify-content:space-between; font-size:12px;">
+                  <span style="color:var(--text-muted);">Kvartální cíl: <strong class="tabular" style="color:var(--text-primary);">${formatMoneyCompact(target)}</strong></span>
+                  <span class="tabular" style="color:var(--emerald-700); font-weight:700;">${formatMoneyCompact(wonVal)} vyhráno</span>
+                </div>
+                <div class="tick-bar">${ticksHtml}</div>
+                <div style="margin-top:6px; font-size:11.5px; color:var(--text-muted);" class="tabular">
+                  Očekávané plnění (vyhráno + vážená pipeline): <strong>${formatMoneyCompact(wonVal + openWeighted)}</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-surface">
+              <div class="table-toolbar">
+                <div class="tabs-bar">
+                  <button class="tab-pill ${ui.projectsTab === 'all' ? 'active' : ''}" data-ptab="all">Vše (${all.length})</button>
+                  <button class="tab-pill ${ui.projectsTab === 'open' ? 'active' : ''}" data-ptab="open">Otevřené (${openProjects.length})</button>
+                  <button class="tab-pill ${ui.projectsTab === 'won' ? 'active' : ''}" data-ptab="won">Vyhráno (${wonProjects.length})</button>
+                </div>
+                <button class="btn-secondary" id="exportProjectsCsvBtn" style="height:30px; font-size:12px;">Export CSV</button>
+              </div>
+              <div class="table-wrap">
+                <table class="crm-table">
+                  <thead>
+                    <tr>
+                      <th>Projekt / Firma</th>
+                      <th>QI název</th>
+                      <th>Pohoda název</th>
+                      <th>Fáze</th>
+                      <th style="text-align:right;">Hodnota</th>
+                      <th>Pravděp.</th>
+                      <th>Termín uzavření</th>
+                      <th>Úkoly</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${rowsHtml || `<tr><td colspan="8" style="text-align:center; padding:32px; color:var(--text-muted);">Žádné projekty v tomto filtru.</td></tr>`}
+                  </tbody>
+                </table>
+              </div>
+              <div class="summary-footer tabular">
+                <div style="display:flex; gap:18px; flex-wrap:wrap;">
+                  <span>Počet: <strong>${list.length}</strong></span>
+                  <span>Celkem: <strong>${formatMoney(viewVal)}</strong></span>
+                  <span>Vážená hodnota: <strong>${formatMoney(viewWeighted)}</strong></span>
+                  <span>Prům. pravděpodobnost: <strong>${avgProb}\u00A0%</strong></span>
+                </div>
+                <span>Měna: <strong>${state.settings.currency}</strong></span>
+              </div>
+            </div>
+          </div>
+        `;
+
+        container.querySelectorAll('[data-pstage]').forEach(el => {
+          el.addEventListener('click', () => {
+            ui.projectsStageFilter = ui.projectsStageFilter === el.dataset.pstage ? 'all' : el.dataset.pstage;
+            renderProjectsView();
+          });
+        });
+        container.querySelectorAll('[data-ptab]').forEach(el => {
+          el.addEventListener('click', () => {
+            ui.projectsTab = el.dataset.ptab;
+            renderProjectsView();
+          });
+        });
+        container.querySelectorAll('[data-open-project]').forEach(row => {
+          row.addEventListener('click', () => openDrawer('project', row.dataset.openProject));
+        });
+        document.getElementById('exportProjectsCsvBtn').addEventListener('click', () => exportProjectsCSV(list));
+      }
+
+      // ========================================================================
+      // SEKCE 4: FIRMY (S IČO & DIČO)
+      // ========================================================================
+      function renderCompaniesView() {
+        const container = document.getElementById('viewContainer');
+
+        if (state.companies.length === 0) {
+          container.innerHTML = `
+            <div class="view-scroll">
+              <div class="empty-state">
+                <div class="empty-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>
+                </div>
+                <div class="empty-title">Adresář firem je prázdný</div>
+                <div class="empty-desc">
+                  Firmy (včetně <strong>IČO</strong> a <strong>DIČ / DIČO</strong>) můžete zakládat přímo zde, nebo se vytvoří automaticky při založení nového kontaktu.
+                </div>
+                <div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap;">
+                  <button class="btn-emerald" id="emptyNewCompanyBtn">+ Nová firma</button>
+                  <button class="btn-secondary" id="emptyNewContactBtn">+ Nový kontakt</button>
+                </div>
+              </div>
+            </div>
+          `;
+          document.getElementById('emptyNewCompanyBtn').addEventListener('click', () => openModal('new_company'));
+          document.getElementById('emptyNewContactBtn').addEventListener('click', () => openModal('new_contact'));
+          return;
+        }
+
+        const q = ui.companySearch.trim().toLowerCase();
+        const list = state.companies.filter(c =>
+          !q ||
+          (c.name || '').toLowerCase().includes(q) ||
+          (c.ico || '').toLowerCase().includes(q) ||
+          (c.dic || '').toLowerCase().includes(q)
+        );
+
+        const rowsHtml = list.map(c => {
+          const contactsCount = state.contacts.filter(x => x.companyId === c.id).length;
+          const compProjects = state.projects.filter(p => p.companyId === c.id);
+          const totalVal = compProjects.reduce((s, p) => s + toActiveCurrency(p.value, p.nativeCurrency), 0);
+          return `
+            <tr data-open-company="${c.id}">
+              <td style="font-weight:700;">${escapeHtml(c.name)}</td>
+              <td class="tabular">${c.ico ? escapeHtml(c.ico) : '<span style="color:var(--text-light);">—</span>'}</td>
+              <td class="tabular">${c.dic ? escapeHtml(c.dic) : '<span style="color:var(--text-light);">—</span>'}</td>
+              <td class="tabular">${contactsCount}</td>
+              <td class="tabular">${compProjects.length}</td>
+              <td class="tabular" style="text-align:right; font-weight:700;">${formatMoney(totalVal)}</td>
+            </tr>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="view-scroll page-pad">
+            <div class="card-surface">
+              <div class="table-toolbar">
+                <div style="font-weight:700;">Evidované společnosti (${list.length})</div>
+                <input type="text" class="form-input" id="companySearchInput" placeholder="Filtrovat podle názvu, IČO nebo DIČO..." value="${escapeHtml(ui.companySearch)}" style="width:270px;" />
+              </div>
+              <div class="table-wrap">
+                <table class="crm-table">
+                  <thead>
+                    <tr>
+                      <th>Název společnosti</th>
+                      <th>IČO</th>
+                      <th>DIČ (DIČO)</th>
+                      <th>Kontakty</th>
+                      <th>Projekty</th>
+                      <th style="text-align:right;">Celková hodnota projektů</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${rowsHtml || `<tr><td colspan="6" style="text-align:center; padding:32px; color:var(--text-muted);">Žádná firma neodpovídá vyhledávání.</td></tr>`}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const inp = document.getElementById('companySearchInput');
+        inp.addEventListener('input', (e) => {
+          ui.companySearch = e.target.value;
+          renderCompaniesView();
+          const el = document.getElementById('companySearchInput');
+          el.focus();
+          el.setSelectionRange(el.value.length, el.value.length);
+        });
+        container.querySelectorAll('[data-open-company]').forEach(r => {
+          r.addEventListener('click', () => openDrawer('company', r.dataset.openCompany));
+        });
+      }
+
+      // ========================================================================
+      // SEKCE 5: KONTAKTY
+      // ========================================================================
+      function renderContactsView() {
+        const container = document.getElementById('viewContainer');
+
+        if (state.contacts.length === 0) {
+          container.innerHTML = `
+            <div class="view-scroll">
+              <div class="empty-state">
+                <div class="empty-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <div class="empty-title">Zatím nemáte žádné kontakty</div>
+                <div class="empty-desc">
+                  Při založení nového kontaktu můžete rovnou zadat novou společnost včetně <strong>IČO</strong> a <strong>DIČO</strong> – firma se automaticky uloží do adresáře Firem.
+                </div>
+                <button class="btn-emerald" id="emptyNewContactBtn">+ Nový kontakt</button>
+              </div>
+            </div>
+          `;
+          document.getElementById('emptyNewContactBtn').addEventListener('click', () => openModal('new_contact'));
+          return;
+        }
+
+        const q = ui.contactSearch.trim().toLowerCase();
+        const list = state.contacts.filter(c => {
+          const comp = getCompany(c.companyId);
+          return !q ||
+            (c.name || '').toLowerCase().includes(q) ||
+            (c.role || '').toLowerCase().includes(q) ||
+            (c.email || '').toLowerCase().includes(q) ||
+            (comp && ((comp.name || '').toLowerCase().includes(q) || (comp.ico || '').includes(q)));
+        });
+
+        const rowsHtml = list.map(c => {
+          const comp = getCompany(c.companyId);
+          const taxMeta = comp && (comp.ico || comp.dic)
+            ? `IČO: ${comp.ico || '—'}${comp.dic ? ' · DIČ: ' + comp.dic : ''}`
+            : '';
+          return `
+            <tr data-open-contact="${c.id}">
+              <td style="font-weight:700;">${escapeHtml(c.name)}</td>
+              <td>
+                ${comp ? `<div style="font-weight:600;">${escapeHtml(comp.name)}</div>${taxMeta ? `<div style="font-size:11px; color:var(--text-muted);" class="tabular">${escapeHtml(taxMeta)}</div>` : ''}` : '<span style="color:var(--text-light);">—</span>'}
+              </td>
+              <td>${escapeHtml(c.role || '—')}</td>
+              <td>${c.email ? `<a href="mailto:${escapeHtml(c.email)}" onclick="event.stopPropagation()" style="color:var(--blue-600); text-decoration:none;">${escapeHtml(c.email)}</a>` : '—'}</td>
+              <td class="tabular">${escapeHtml(c.phone || '—')}</td>
+            </tr>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="view-scroll page-pad">
+            <div class="card-surface">
+              <div class="table-toolbar">
+                <div style="font-weight:700;">Kontaktní osoby (${list.length})</div>
+                <input type="text" class="form-input" id="contactSearchInput" placeholder="Hledat jméno, firmu, IČO nebo e-mail..." value="${escapeHtml(ui.contactSearch)}" style="width:270px;" />
+              </div>
+              <div class="table-wrap">
+                <table class="crm-table">
+                  <thead>
+                    <tr>
+                      <th>Jméno a příjmení</th>
+                      <th>Společnost (IČO / DIČO)</th>
+                      <th>Pozice</th>
+                      <th>E-mail</th>
+                      <th>Telefon</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${rowsHtml || `<tr><td colspan="5" style="text-align:center; padding:32px; color:var(--text-muted);">Žádný kontakt neodpovídá vyhledávání.</td></tr>`}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const inp = document.getElementById('contactSearchInput');
+        inp.addEventListener('input', (e) => {
+          ui.contactSearch = e.target.value;
+          renderContactsView();
+          const el = document.getElementById('contactSearchInput');
+          el.focus();
+          el.setSelectionRange(el.value.length, el.value.length);
+        });
+        container.querySelectorAll('[data-open-contact]').forEach(r => {
+          r.addEventListener('click', () => openDrawer('contact', r.dataset.openContact));
+        });
+      }
+
+      // ========================================================================
+      // SEKCE 6: PROGNÓZA & GRAFY
+      // ========================================================================
+      function renderForecastView() {
+        const container = document.getElementById('viewContainer');
+        const allP = state.projects;
+        const totalPipeline = allP.reduce((s, p) => s + toActiveCurrency(p.value, p.nativeCurrency), 0);
+        const wonVal = allP.filter(p => p.stage === 'won').reduce((s, p) => s + toActiveCurrency(p.value, p.nativeCurrency), 0);
+        const weightedVal = allP.filter(p => p.stage !== 'won').reduce((s, p) => s + toActiveCurrency(p.value, p.nativeCurrency) * ((Number(p.probability) || 0) / 100), 0);
+        const expected = wonVal + weightedVal;
+        const target = Math.max(1, toActiveCurrency(state.settings.quarterTargetCZK, 'CZK'));
+        const targetPct = Math.round((expected / target) * 100);
+
+        const totalTasks = state.tasks.length;
+        const doneTasks = state.tasks.filter(t => t.completed).length;
+        const donePct = totalTasks > 0 ? Math.round((doneTasks / totalTasks) * 100) : 0;
+
+        if (allP.length === 0 && totalTasks === 0) {
+          container.innerHTML = `
+            <div class="view-scroll">
+              <div class="empty-state">
+                <div class="empty-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                </div>
+                <div class="empty-title">Prognóza čeká na první data</div>
+                <div class="empty-desc">
+                  Jakmile zadáte první projekty a úkoly, automaticky se zde vykreslí grafy hodnot podle fází, vážená pipeline v Kč/EUR i přehled plnění úkolů.
+                </div>
+                <button class="btn-emerald" id="emptyForecastBtn">+ Nový projekt</button>
+              </div>
+            </div>
+          `;
+          document.getElementById('emptyForecastBtn').addEventListener('click', () => openModal('new_project'));
+          return;
+        }
+
+        const maxStage = Math.max(1, ...STAGES.map(st =>
+          allP.filter(p => p.stage === st.id).reduce((s, p) => s + toActiveCurrency(p.value, p.nativeCurrency), 0)
+        ));
+
+        const stageBars = STAGES.map(st => {
+          const sum = allP.filter(p => p.stage === st.id).reduce((s, p) => s + toActiveCurrency(p.value, p.nativeCurrency), 0);
+          const cnt = allP.filter(p => p.stage === st.id).length;
+          const pct = Math.round((sum / maxStage) * 100);
+          return `
+            <div class="bar-row">
+              <div class="bar-top">
+                <span style="display:flex; align-items:center; gap:6px; font-weight:600;">
+                  <span class="col-dot" style="background:${st.color};"></span>${st.label} (${cnt})
+                </span>
+                <span class="tabular" style="font-weight:700;">${formatMoney(sum)}</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" style="width:${pct}%; background:${st.color};"></div></div>
+            </div>
+          `;
+        }).join('');
+
+        const r = 46;
+        const circ = 2 * Math.PI * r;
+        const offset = circ * (1 - donePct / 100);
+
+        container.innerHTML = `
+          <div class="view-scroll page-pad">
+            <div class="kpi-grid tabular">
+              <div class="kpi-card">
+                <div class="kpi-label">Celková pipeline</div>
+                <div class="kpi-val">${formatMoneyCompact(totalPipeline)}</div>
+                <div class="kpi-sub">${allP.length} evidovaných projektů</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Vyhráno</div>
+                <div class="kpi-val" style="color:var(--emerald-600);">${formatMoneyCompact(wonVal)}</div>
+                <div class="kpi-sub">${allP.filter(p => p.stage === 'won').length} uzavřených projektů</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Vážená otevřená pipeline</div>
+                <div class="kpi-val">${formatMoneyCompact(weightedVal)}</div>
+                <div class="kpi-sub">Dle pravděpodobnosti výhry</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Plnění kvartálního cíle</div>
+                <div class="kpi-val" style="color:${targetPct >= 100 ? 'var(--emerald-600)' : 'var(--blue-600)'};">${targetPct}\u00A0%</div>
+                <div class="kpi-sub">Cíl: ${formatMoneyCompact(target)}</div>
+              </div>
+            </div>
+
+            <div class="charts-grid">
+              <div class="pipeline-box">
+                <div style="font-size:14px; font-weight:700; margin-bottom:14px;">Hodnota projektů podle fází (${state.settings.currency})</div>
+                ${stageBars}
+              </div>
+
+              <div class="pipeline-box" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="font-size:14px; font-weight:700; margin-bottom:12px;">Plnění úkolů</div>
+                <div style="display:flex; align-items:center; gap:24px; padding:10px 0;">
+                  <svg width="116" height="116" viewBox="0 0 116 116">
+                    <circle cx="58" cy="58" r="${r}" fill="none" stroke="#e2e8f0" stroke-width="11"/>
+                    <circle cx="58" cy="58" r="${r}" fill="none" stroke="#16a34a" stroke-width="11"
+                      stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${offset.toFixed(1)}"
+                      transform="rotate(-90 58 58)" stroke-linecap="round"/>
+                    <text x="58" y="63" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">${donePct}%</text>
+                  </svg>
+                  <div style="display:flex; flex-direction:column; gap:8px; font-size:13px;" class="tabular">
+                    <div>Celkem úkolů: <strong>${totalTasks}</strong></div>
+                    <div style="color:var(--emerald-700);">Splněno: <strong>${doneTasks}</strong></div>
+                    <div style="color:var(--blue-600);">Otevřeno: <strong>${totalTasks - doneTasks}</strong></div>
+                    <div style="color:var(--red-600);">Po termínu: <strong>${state.tasks.filter(t => !t.completed && getTaskColumn(t) === 'overdue').length}</strong></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // ========================================================================
+      // PRAVÝ DETAILNÍ PANEL (ÚKOL / PROJEKT / FIRMA / KONTAKT)
+      // ========================================================================
+      function openDrawer(type, id) {
+        ui.drawerType = type;
+        ui.drawerId = id;
+        ui.drawerDeleteArmed = false;
+
+        const titleEl = document.getElementById('drawerTitle');
+        const subEl = document.getElementById('drawerSubtitle');
+        const bodyEl = document.getElementById('drawerBody');
+        const delBtn = document.getElementById('drawerDeleteBtn');
+
+        if (type === 'task') {
+          const t = state.tasks.find(x => x.id === id);
+          if (!t) return;
+          const proj = getProject(t.projectId);
+          titleEl.textContent = 'Detail úkolu';
+          subEl.textContent = t.createdAt ? `Založeno: ${formatDateCZ(t.createdAt)}` : 'Editace úkolu';
+          delBtn.textContent = 'Smazat úkol';
+
+          bodyEl.innerHTML = `
+            <div class="form-field">
+              <label class="form-label">Název úkolu</label>
+              <input type="text" class="form-input" id="dtTitle" value="${escapeHtml(t.title)}" />
+            </div>
+
+            <label style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:8px; background:${t.completed ? 'var(--emerald-50)' : 'var(--bg-subtle)'}; border:1px solid ${t.completed ? '#bbf7d0' : 'var(--border)'}; cursor:pointer; font-weight:600;">
+              <input type="checkbox" id="dtCompleted" ${t.completed ? 'checked' : ''} />
+              <span>Stav: ${t.completed ? 'Splněno' : 'Probíhá'}</span>
+            </label>
+
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Přesné datum *</label>
+                <input type="date" class="form-input tabular" id="dtDate" value="${escapeHtml(t.dueDate || getTodayStr())}" />
+              </div>
+              <div class="form-field">
+                <label class="form-label">Čas začátku</label>
+                <input type="time" class="form-input tabular" id="dtTime" value="${escapeHtml(t.startTime || '')}" />
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Délka trvání</label>
+                <select class="form-select" id="dtDuration">
+                  ${[15, 30, 45, 60, 90].map(m => `<option value="${m}" ${Number(t.duration) === m ? 'selected' : ''}>${m} min</option>`).join('')}
+                </select>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Vlastník / Autor</label>
+                <input type="text" class="form-input" id="dtOwner" value="${escapeHtml(t.owner || state.settings.userName)}" />
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label">Typ úkolu</label>
+              <input type="hidden" id="dtType" value="${escapeHtml(t.type || 'call')}" />
+              <div class="type-btn-grid">
+                ${Object.entries(TASK_TYPES).map(([k, v]) => `
+                  <button type="button" class="type-pick-btn ${(t.type || 'call') === k ? 'active' : ''}" data-pick-ttype="${k}">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${v.icon}</svg>
+                    <span>${v.label}</span>
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label">Vazba na projekt</label>
+              <select class="form-select" id="dtProject">
+                <option value="">— Bez vazby na projekt —</option>
+                ${state.projects.map(p => `<option value="${p.id}" ${t.projectId === p.id ? 'selected' : ''}>${escapeHtml(formatProjectLabel(p))}</option>`).join('')}
+              </select>
+              ${proj ? `<button type="button" class="project-link-pill" id="dtOpenLinkedProject" style="margin-top:6px; align-self:flex-start;">📁 Otevřít projekt: ${escapeHtml(proj.name)} →</button>` : ''}
+            </div>
+
+            <div class="form-field">
+              <label class="form-label">Poznámky</label>
+              <textarea class="form-textarea" id="dtNotes" rows="4">${escapeHtml(t.notes || '')}</textarea>
+            </div>
+          `;
+
+          bodyEl.querySelectorAll('[data-pick-ttype]').forEach(btn => {
+            btn.addEventListener('click', () => {
+              document.getElementById('dtType').value = btn.dataset.pickTtype;
+              bodyEl.querySelectorAll('[data-pick-ttype]').forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+            });
+          });
+          const jumpBtn = document.getElementById('dtOpenLinkedProject');
+          if (jumpBtn) {
+            jumpBtn.addEventListener('click', () => {
+              ui.activeView = 'projects';
+              renderAll();
+              openDrawer('project', t.projectId);
+            });
+          }
+        } else if (type === 'project') {
+          const p = getProject(id);
+          if (!p) return;
+          const linkedTasks = state.tasks.filter(t => t.projectId === p.id).sort((a, b) => (a.dueDate || '').localeCompare(b.dueDate || ''));
+          titleEl.textContent = p.name;
+          subEl.textContent = 'Detail projektu';
+          delBtn.textContent = 'Smazat projekt';
+
+          bodyEl.innerHTML = `
+            <div class="form-field">
+              <label class="form-label">Název projektu *</label>
+              <input type="text" class="form-input" id="dpName" value="${escapeHtml(p.name)}" />
+            </div>
+
+            <div class="form-section-box">
+              <div style="font-size:11.5px; font-weight:700; color:var(--navy-900);">Identifikátory ERP / účetnictví</div>
+              <div class="form-grid-2">
+                <div class="form-field">
+                  <label class="form-label">QI název</label>
+                  <input type="text" class="form-input" id="dpQi" value="${escapeHtml(p.qiName || '')}" placeholder="Kód / název v QI" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Pohoda název</label>
+                  <input type="text" class="form-input" id="dpPohoda" value="${escapeHtml(p.pohodaName || '')}" placeholder="Kód / název v Pohodě" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label">Společnost</label>
+              <select class="form-select" id="dpCompany">
+                <option value="">— Vyberte společnost —</option>
+                ${state.companies.map(c => `<option value="${c.id}" ${p.companyId === c.id ? 'selected' : ''}>${escapeHtml(c.name)}${c.ico ? ' (IČO: ' + escapeHtml(c.ico) + ')' : ''}</option>`).join('')}
+              </select>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Hodnota</label>
+                <input type="number" class="form-input tabular" id="dpValue" value="${p.value || 0}" min="0" />
+              </div>
+              <div class="form-field">
+                <label class="form-label">Měna</label>
+                <select class="form-select" id="dpCurrency">
+                  <option value="CZK" ${p.nativeCurrency === 'CZK' ? 'selected' : ''}>Kč (CZK)</option>
+                  <option value="EUR" ${p.nativeCurrency === 'EUR' ? 'selected' : ''}>EUR (€)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Fáze</label>
+                <select class="form-select" id="dpStage">
+                  ${STAGES.map(s => `<option value="${s.id}" ${p.stage === s.id ? 'selected' : ''}>${s.label}</option>`).join('')}
+                </select>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Pravděpodobnost výhry (%)</label>
+                <input type="number" class="form-input tabular" id="dpProb" value="${p.probability || 0}" min="0" max="100" />
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Termín uzavření</label>
+                <input type="date" class="form-input tabular" id="dpCloseDate" value="${escapeHtml(p.targetCloseDate || '')}" />
+              </div>
+              <div class="form-field">
+                <label class="form-label">Vlastník</label>
+                <input type="text" class="form-input" id="dpOwner" value="${escapeHtml(p.owner || state.settings.userName)}" />
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label">Další krok</label>
+              <input type="text" class="form-input" id="dpNextStep" value="${escapeHtml(p.nextStep || '')}" />
+            </div>
+
+            <div class="form-field">
+              <label class="form-label">Poznámka</label>
+              <textarea class="form-textarea" id="dpNotes" rows="3">${escapeHtml(p.notes || '')}</textarea>
+            </div>
+
+            <div class="form-section-box">
+              <div style="display:flex; align-items:center; justify-content:space-between;">
+                <span style="font-size:12px; font-weight:700;">Navázané úkoly (${linkedTasks.length})</span>
+                <button type="button" class="btn-emerald" id="dpAddTaskBtn" style="height:26px; padding:0 9px; font-size:11.5px;">+ Přidat úkol k projektu</button>
+              </div>
+              ${linkedTasks.length ? linkedTasks.map(t => `
+                <div class="linked-list-item" data-dp-open-task="${t.id}">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <button type="button" class="task-check ${t.completed ? 'checked' : ''}" data-dp-toggle-task="${t.id}">
+                      ${t.completed ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>' : ''}
+                    </button>
+                    <span style="font-weight:600; ${t.completed ? 'text-decoration:line-through; color:var(--text-muted);' : ''}">${escapeHtml(t.title)}</span>
+                  </div>
+                  <span class="date-chip">📅 ${formatDateCZ(t.dueDate)}</span>
+                </div>
+              `).join('') : '<div style="font-size:12px; color:var(--text-muted);">K tomuto projektu zatím nejsou přiřazeny žádné úkoly.</div>'}
+            </div>
+          `;
+
+          document.getElementById('dpAddTaskBtn').addEventListener('click', () => {
+            closeDrawer();
+            openModal('new_task', { projectId: p.id, dueDate: getTodayStr() });
+          });
+          bodyEl.querySelectorAll('[data-dp-toggle-task]').forEach(b => {
+            b.addEventListener('click', (e) => {
+              e.stopPropagation();
+              const t = state.tasks.find(x => x.id === b.dataset.dpToggleTask);
+              if (t) {
+                t.completed = !t.completed;
+                saveState();
+                openDrawer('project', p.id);
+                renderAll();
+              }
+            });
+          });
+          bodyEl.querySelectorAll('[data-dp-open-task]').forEach(el => {
+            el.addEventListener('click', () => openDrawer('task', el.dataset.dpOpenTask));
+          });
+        } else if (type === 'company') {
+          const c = getCompany(id);
+          if (!c) return;
+          const cContacts = state.contacts.filter(x => x.companyId === c.id);
+          const cProjects = state.projects.filter(p => p.companyId === c.id);
+          titleEl.textContent = c.name;
+          subEl.textContent = 'Detail společnosti';
+          delBtn.textContent = 'Smazat firmu';
+
+          bodyEl.innerHTML = `
+            <div class="form-field">
+              <label class="form-label">Název společnosti *</label>
+              <input type="text" class="form-input" id="dcName" value="${escapeHtml(c.name)}" />
+            </div>
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">IČO</label>
+                <input type="text" class="form-input tabular" id="dcIco" value="${escapeHtml(c.ico || '')}" />
+              </div>
+              <div class="form-field">
+                <label class="form-label">DIČ (DIČO)</label>
+                <input type="text" class="form-input tabular" id="dcDic" value="${escapeHtml(c.dic || '')}" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Poznámka</label>
+              <textarea class="form-textarea" id="dcNotes" rows="3">${escapeHtml(c.notes || '')}</textarea>
+            </div>
+            <div class="form-section-box">
+              <div style="font-size:12px; font-weight:700;">Kontakty (${cContacts.length})</div>
+              ${cContacts.length ? cContacts.map(ct => `
+                <div class="linked-list-item" data-dc-contact="${ct.id}">
+                  <span><strong>${escapeHtml(ct.name)}</strong> · ${escapeHtml(ct.role || '')}</span>
+                  <span style="color:var(--text-muted);">${escapeHtml(ct.phone || ct.email || '')}</span>
+                </div>
+              `).join('') : '<div style="font-size:12px; color:var(--text-muted);">Žádné kontakty</div>'}
+            </div>
+            <div class="form-section-box">
+              <div style="font-size:12px; font-weight:700;">Projekty (${cProjects.length})</div>
+              ${cProjects.length ? cProjects.map(pr => `
+                <div class="linked-list-item" data-dc-project="${pr.id}">
+                  <span style="font-weight:600;">${escapeHtml(pr.name)}</span>
+                  <span class="tabular" style="font-weight:700;">${formatMoney(toActiveCurrency(pr.value, pr.nativeCurrency))}</span>
+                </div>
+              `).join('') : '<div style="font-size:12px; color:var(--text-muted);">Žádné projekty</div>'}
+            </div>
+          `;
+
+          bodyEl.querySelectorAll('[data-dc-contact]').forEach(el => el.addEventListener('click', () => openDrawer('contact', el.dataset.dcContact)));
+          bodyEl.querySelectorAll('[data-dc-project]').forEach(el => el.addEventListener('click', () => openDrawer('project', el.dataset.dcProject)));
+        } else if (type === 'contact') {
+          const ct = state.contacts.find(x => x.id === id);
+          if (!ct) return;
+          titleEl.textContent = ct.name;
+          subEl.textContent = 'Detail kontaktu';
+          delBtn.textContent = 'Smazat kontakt';
+
+          bodyEl.innerHTML = `
+            <div class="form-field">
+              <label class="form-label">Jméno a příjmení *</label>
+              <input type="text" class="form-input" id="dkName" value="${escapeHtml(ct.name)}" />
+            </div>
+            <div class="form-field">
+              <label class="form-label">Společnost</label>
+              <select class="form-select" id="dkCompany">
+                <option value="">— Bez společnosti —</option>
+                ${state.companies.map(c => `<option value="${c.id}" ${ct.companyId === c.id ? 'selected' : ''}>${escapeHtml(c.name)}${c.ico ? ' (IČO: ' + escapeHtml(c.ico) + ')' : ''}</option>`).join('')}
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Pozice</label>
+              <input type="text" class="form-input" id="dkRole" value="${escapeHtml(ct.role || '')}" />
+            </div>
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">E-mail</label>
+                <input type="email" class="form-input" id="dkEmail" value="${escapeHtml(ct.email || '')}" />
+              </div>
+              <div class="form-field">
+                <label class="form-label">Telefon</label>
+                <input type="text" class="form-input" id="dkPhone" value="${escapeHtml(ct.phone || '')}" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Poznámka</label>
+              <textarea class="form-textarea" id="dkNotes" rows="3">${escapeHtml(ct.notes || '')}</textarea>
+            </div>
+          `;
+        }
+
+        document.getElementById('drawerOverlay').classList.add('open');
+      }
+
+      function closeDrawer() {
+        document.getElementById('drawerOverlay').classList.remove('open');
+        ui.drawerType = null;
+        ui.drawerId = null;
+        ui.drawerDeleteArmed = false;
+      }
+
+      document.getElementById('drawerCloseBtn').addEventListener('click', closeDrawer);
+      document.getElementById('drawerCancelBtn').addEventListener('click', closeDrawer);
+      document.getElementById('drawerOverlay').addEventListener('click', (e) => {
+        if (e.target.id === 'drawerOverlay') closeDrawer();
+      });
+
+      document.getElementById('drawerSaveBtn').addEventListener('click', () => {
+        if (ui.drawerType === 'task') {
+          const t = state.tasks.find(x => x.id === ui.drawerId);
+          if (!t) return;
+          t.title = document.getElementById('dtTitle').value.trim() || t.title;
+          t.completed = document.getElementById('dtCompleted').checked;
+          t.dueDate = document.getElementById('dtDate').value || getTodayStr();
+          t.startTime = document.getElementById('dtTime').value || '';
+          t.duration = Number(document.getElementById('dtDuration').value) || 30;
+          t.owner = document.getElementById('dtOwner').value.trim() || state.settings.userName;
+          t.type = document.getElementById('dtType').value || 'call';
+          t.projectId = document.getElementById('dtProject').value || null;
+          t.notes = document.getElementById('dtNotes').value;
+          saveState();
+          closeDrawer();
+          renderAll();
+          showToast(`Úkol „${t.title}“ uložen`);
+        } else if (ui.drawerType === 'project') {
+          const p = getProject(ui.drawerId);
+          if (!p) return;
+          p.name = document.getElementById('dpName').value.trim() || p.name;
+          p.qiName = document.getElementById('dpQi').value.trim();
+          p.pohodaName = document.getElementById('dpPohoda').value.trim();
+          p.companyId = document.getElementById('dpCompany').value || null;
+          p.value = Number(document.getElementById('dpValue').value) || 0;
+          p.nativeCurrency = document.getElementById('dpCurrency').value;
+          p.stage = document.getElementById('dpStage').value;
+          p.probability = Math.max(0, Math.min(100, Number(document.getElementById('dpProb').value) || 0));
+          p.targetCloseDate = document.getElementById('dpCloseDate').value || '';
+          p.owner = document.getElementById('dpOwner').value.trim() || state.settings.userName;
+          p.nextStep = document.getElementById('dpNextStep').value.trim();
+          p.notes = document.getElementById('dpNotes').value;
+          saveState();
+          closeDrawer();
+          renderAll();
+          showToast(`Projekt „${p.name}“ uložen`);
+        } else if (ui.drawerType === 'company') {
+          const c = getCompany(ui.drawerId);
+          if (!c) return;
+          c.name = document.getElementById('dcName').value.trim() || c.name;
+          c.ico = document.getElementById('dcIco').value.trim();
+          c.dic = document.getElementById('dcDic').value.trim();
+          c.notes = document.getElementById('dcNotes').value;
+          saveState();
+          closeDrawer();
+          renderAll();
+          showToast(`Společnost „${c.name}“ uložena`);
+        } else if (ui.drawerType === 'contact') {
+          const ct = state.contacts.find(x => x.id === ui.drawerId);
+          if (!ct) return;
+          ct.name = document.getElementById('dkName').value.trim() || ct.name;
+          ct.companyId = document.getElementById('dkCompany').value || null;
+          ct.role = document.getElementById('dkRole').value.trim();
+          ct.email = document.getElementById('dkEmail').value.trim();
+          ct.phone = document.getElementById('dkPhone').value.trim();
+          ct.notes = document.getElementById('dkNotes').value;
+          saveState();
+          closeDrawer();
+          renderAll();
+          showToast(`Kontakt „${ct.name}“ uložen`);
+        }
+      });
+
+      document.getElementById('drawerDeleteBtn').addEventListener('click', () => {
+        const btn = document.getElementById('drawerDeleteBtn');
+        if (!ui.drawerDeleteArmed) {
+          ui.drawerDeleteArmed = true;
+          btn.textContent = 'Klikněte znovu pro smazání';
+          return;
+        }
+        if (ui.drawerType === 'task') {
+          const t = state.tasks.find(x => x.id === ui.drawerId);
+          ui.undoTasksSnapshot = JSON.stringify(state.tasks);
+          state.tasks = state.tasks.filter(x => x.id !== ui.drawerId);
+          saveState();
+          closeDrawer();
+          renderAll();
+          showToast(`Úkol „${t ? t.title : ''}“ smazán`, true);
+        } else if (ui.drawerType === 'project') {
+          const p = getProject(ui.drawerId);
+          state.projects = state.projects.filter(x => x.id !== ui.drawerId);
+          state.tasks.forEach(t => { if (t.projectId === ui.drawerId) t.projectId = null; });
+          saveState();
+          closeDrawer();
+          renderAll();
+          showToast(`Projekt „${p ? p.name : ''}“ smazán`);
+        } else if (ui.drawerType === 'company') {
+          const c = getCompany(ui.drawerId);
+          state.companies = state.companies.filter(x => x.id !== ui.drawerId);
+          state.contacts.forEach(ct => { if (ct.companyId === ui.drawerId) ct.companyId = null; });
+          state.projects.forEach(pr => { if (pr.companyId === ui.drawerId) pr.companyId = null; });
+          saveState();
+          closeDrawer();
+          renderAll();
+          showToast(`Společnost „${c ? c.name : ''}“ smazána`);
+        } else if (ui.drawerType === 'contact') {
+          const ct = state.contacts.find(x => x.id === ui.drawerId);
+          state.contacts = state.contacts.filter(x => x.id !== ui.drawerId);
+          saveState();
+          closeDrawer();
+          renderAll();
+          showToast(`Kontakt „${ct ? ct.name : ''}“ smazán`);
+        }
+      });
+
+      // ========================================================================
+      // MODÁLNÍ OKNA (NOVÝ ÚKOL / PROJEKT / FIRMA / KONTAKT / PROFIL)
+      // ========================================================================
+      function openModal(mode, prefill = {}) {
+        ui.modalMode = mode;
+        ui.modalPrefill = prefill;
+        const titleEl = document.getElementById('modalTitle');
+        const bodyEl = document.getElementById('modalBody');
+        const footerEl = document.getElementById('modalFooter');
+        const submitBtn = document.getElementById('modalSubmitBtn');
+        footerEl.style.display = 'flex';
+
+        if (mode === 'new_task') {
+          titleEl.textContent = 'Nový úkol';
+          submitBtn.textContent = 'Vytvořit úkol';
+          const defDate = prefill.dueDate || getTodayStr();
+          const defProj = prefill.projectId || '';
+          bodyEl.innerHTML = `
+            <div class="form-field">
+              <label class="form-label">Název úkolu *</label>
+              <input type="text" class="form-input" id="mtTitle" required placeholder="např. Telefonát ohledně cenové nabídky" />
+            </div>
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Přesné datum *</label>
+                <input type="date" class="form-input tabular" id="mtDate" required value="${escapeHtml(defDate)}" />
+              </div>
+              <div class="form-field">
+                <label class="form-label">Čas začátku (volitelné)</label>
+                <input type="time" class="form-input tabular" id="mtTime" />
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Délka trvání</label>
+                <select class="form-select" id="mtDuration">
+                  <option value="15">15 min</option>
+                  <option value="30" selected>30 min</option>
+                  <option value="45">45 min</option>
+                  <option value="60">60 min</option>
+                  <option value="90">90 min</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Typ úkolu</label>
+                <select class="form-select" id="mtType">
+                  ${Object.entries(TASK_TYPES).map(([k, v]) => `<option value="${k}">${v.label}</option>`).join('')}
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Vazba na projekt</label>
+              <select class="form-select" id="mtProject">
+                <option value="">— Bez vazby na projekt —</option>
+                ${state.projects.map(p => `<option value="${p.id}" ${defProj === p.id ? 'selected' : ''}>${escapeHtml(formatProjectLabel(p))}</option>`).join('')}
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Vlastník / Autor</label>
+              <input type="text" class="form-input" id="mtOwner" value="${escapeHtml(state.settings.userName)}" />
+            </div>
+            <div class="form-field">
+              <label class="form-label">Poznámka</label>
+              <textarea class="form-textarea" id="mtNotes" rows="3" placeholder="Podrobnosti k úkolu..."></textarea>
+            </div>
+          `;
+        } else if (mode === 'new_project') {
+          titleEl.textContent = 'Nový projekt';
+          submitBtn.textContent = 'Vytvořit projekt';
+          bodyEl.innerHTML = `
+            <div class="form-field">
+              <label class="form-label">Název projektu *</label>
+              <input type="text" class="form-input" id="mpName" required placeholder="např. Implementace ERP systému" />
+            </div>
+            <div class="form-section-box">
+              <div style="font-size:11.5px; font-weight:700; color:var(--navy-900);">Externí názvy (QI & Pohoda)</div>
+              <div class="form-grid-2">
+                <div class="form-field">
+                  <label class="form-label">QI název</label>
+                  <input type="text" class="form-input" id="mpQi" placeholder="Zadejte QI název" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Pohoda název</label>
+                  <input type="text" class="form-input" id="mpPohoda" placeholder="Zadejte Pohoda název" />
+                </div>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Společnost</label>
+              <select class="form-select" id="mpCompany">
+                <option value="">— Vyberte společnost —</option>
+                ${state.companies.map(c => `<option value="${c.id}">${escapeHtml(c.name)}${c.ico ? ' (IČO: ' + escapeHtml(c.ico) + ')' : ''}</option>`).join('')}
+              </select>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Hodnota</label>
+                <input type="number" class="form-input tabular" id="mpValue" value="0" min="0" />
+              </div>
+              <div class="form-field">
+                <label class="form-label">Měna</label>
+                <select class="form-select" id="mpCurrency">
+                  <option value="CZK" ${state.settings.currency === 'CZK' ? 'selected' : ''}>Kč (CZK)</option>
+                  <option value="EUR" ${state.settings.currency === 'EUR' ? 'selected' : ''}>EUR (€)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Fáze</label>
+                <select class="form-select" id="mpStage">
+                  ${STAGES.map(s => `<option value="${s.id}">${s.label}</option>`).join('')}
+                </select>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Pravděpodobnost (%)</label>
+                <input type="number" class="form-input tabular" id="mpProb" value="25" min="0" max="100" />
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Termín uzavření</label>
+                <input type="date" class="form-input tabular" id="mpCloseDate" />
+              </div>
+              <div class="form-field">
+                <label class="form-label">Vlastník</label>
+                <input type="text" class="form-input" id="mpOwner" value="${escapeHtml(state.settings.userName)}" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Další krok</label>
+              <input type="text" class="form-input" id="mpNextStep" placeholder="např. Odeslat cenovou nabídku" />
+            </div>
+            <div class="form-field">
+              <label class="form-label">Poznámka</label>
+              <textarea class="form-textarea" id="mpNotes" rows="2"></textarea>
+            </div>
+          `;
+        } else if (mode === 'new_company') {
+          titleEl.textContent = 'Nová společnost';
+          submitBtn.textContent = 'Vytvořit společnost';
+          bodyEl.innerHTML = `
+            <div class="form-field">
+              <label class="form-label">Název společnosti *</label>
+              <input type="text" class="form-input" id="mcName" required placeholder="např. ACME Czech s.r.o." />
+            </div>
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">IČO</label>
+                <input type="text" class="form-input tabular" id="mcIco" placeholder="12345678" />
+              </div>
+              <div class="form-field">
+                <label class="form-label">DIČ (DIČO)</label>
+                <input type="text" class="form-input tabular" id="mcDic" placeholder="CZ12345678" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Poznámka</label>
+              <textarea class="form-textarea" id="mcNotes" rows="3"></textarea>
+            </div>
+          `;
+        } else if (mode === 'new_contact') {
+          titleEl.textContent = 'Nový kontakt';
+          submitBtn.textContent = 'Uložit kontakt';
+          const hasCompanies = state.companies.length > 0;
+          bodyEl.innerHTML = `
+            <div class="form-field">
+              <label class="form-label">Jméno a příjmení *</label>
+              <input type="text" class="form-input" id="mkName" required placeholder="např. Ing. Jan Novák" />
+            </div>
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Pozice</label>
+                <input type="text" class="form-input" id="mkRole" placeholder="např. Jednatel / Obchodní ředitel" />
+              </div>
+              <div class="form-field">
+                <label class="form-label">Telefon</label>
+                <input type="text" class="form-input tabular" id="mkPhone" placeholder="+420 602 000 000" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">E-mail</label>
+              <input type="email" class="form-input" id="mkEmail" placeholder="jan.novak@firma.cz" />
+            </div>
+
+            <div class="form-section-box">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+                <span style="font-size:12px; font-weight:700; color:var(--navy-900);">Společnost</span>
+                <div style="display:flex; gap:12px; font-size:12px;">
+                  <label style="display:flex; align-items:center; gap:5px; cursor:pointer;">
+                    <input type="radio" name="mkCompMode" value="new" ${!hasCompanies ? 'checked' : ''} /> Založit novou firmu
+                  </label>
+                  <label style="display:flex; align-items:center; gap:5px; cursor:pointer; ${!hasCompanies ? 'opacity:.5;' : ''}">
+                    <input type="radio" name="mkCompMode" value="existing" ${hasCompanies ? 'checked' : ''} ${!hasCompanies ? 'disabled' : ''} /> Vybrat existující
+                  </label>
+                </div>
+              </div>
+
+              <div id="mkExistingCompWrap" style="display:${hasCompanies ? 'block' : 'none'};">
+                <div class="form-field">
+                  <label class="form-label">Existující společnost</label>
+                  <select class="form-select" id="mkExistingComp">
+                    <option value="">— Bez společnosti —</option>
+                    ${state.companies.map(c => `<option value="${c.id}">${escapeHtml(c.name)}${c.ico ? ' (IČO: ' + escapeHtml(c.ico) + ')' : ''}</option>`).join('')}
+                  </select>
+                </div>
+              </div>
+
+              <div id="mkNewCompWrap" style="display:${hasCompanies ? 'none' : 'flex'}; flex-direction:column; gap:9px;">
+                <div class="form-field">
+                  <label class="form-label">Název společnosti</label>
+                  <input type="text" class="form-input" id="mkNewCompName" placeholder="Automaticky se založí v sekci Firmy" />
+                </div>
+                <div class="form-grid-2">
+                  <div class="form-field">
+                    <label class="form-label">IČO</label>
+                    <input type="text" class="form-input tabular" id="mkNewCompIco" placeholder="12345678" />
+                  </div>
+                  <div class="form-field">
+                    <label class="form-label">DIČ (DIČO)</label>
+                    <input type="text" class="form-input tabular" id="mkNewCompDic" placeholder="CZ12345678" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label">Poznámka</label>
+              <textarea class="form-textarea" id="mkNotes" rows="2"></textarea>
+            </div>
+          `;
+
+          bodyEl.querySelectorAll('input[name="mkCompMode"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+              const isNew = radio.value === 'new';
+              document.getElementById('mkNewCompWrap').style.display = isNew ? 'flex' : 'none';
+              document.getElementById('mkExistingCompWrap').style.display = isNew ? 'none' : 'block';
+            });
+          });
+        } else if (mode === 'profile') {
+          titleEl.textContent = 'Profil, nastavení a záloha dat';
+          submitBtn.textContent = 'Uložit nastavení';
+          bodyEl.innerHTML = `
+            <div class="form-field">
+              <label class="form-label">Jméno uživatele (Autor)</label>
+              <input type="text" class="form-input" id="profUserName" value="${escapeHtml(state.settings.userName)}" />
+            </div>
+            <div class="form-field">
+              <label class="form-label">Kvartální cíl (v Kč)</label>
+              <input type="number" class="form-input tabular" id="profTarget" value="${state.settings.quarterTargetCZK}" min="1000" />
+            </div>
+            <div class="form-section-box">
+              <div style="font-size:12px; font-weight:700;">Záloha a přenos dat (JSON)</div>
+              <div style="font-size:12px; color:var(--text-muted);">
+                Všechna data se průběžně ukládají lokálně do prohlížeče. Zde můžete stáhnout kompletní zálohu nebo ji nahrát zpět.
+              </div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button type="button" class="btn-secondary" id="profExportJsonBtn">Exportovat JSON</button>
+                <button type="button" class="btn-secondary" id="profImportJsonBtn">Importovat JSON</button>
+              </div>
+            </div>
+            <div class="form-section-box" style="border-color:#fecaca; background:#fef2f2;">
+              <div style="font-size:12px; font-weight:700; color:var(--red-600);">Nebezpečná zóna</div>
+              <div style="font-size:12px; color:#7f1d1d;">
+                Smaže všechny projekty, úkoly, firmy a kontakty a vrátí CRM do zcela prázdného stavu.
+              </div>
+              <div>
+                <button type="button" class="btn-danger-soft" id="profWipeAllBtn">Vymazat všechna data</button>
+              </div>
+            </div>
+          `;
+
+          document.getElementById('profExportJsonBtn').addEventListener('click', () => {
+            downloadFile(JSON.stringify(state, null, 2), `outpost-crm-zaloha-${getTodayStr()}.json`, 'application/json');
+            showToast('Záloha dat (JSON) byla stažena');
+          });
+          document.getElementById('profImportJsonBtn').addEventListener('click', () => {
+            document.getElementById('jsonImportInput').click();
+          });
+          let wipeArmed = false;
+          document.getElementById('profWipeAllBtn').addEventListener('click', (e) => {
+            if (!wipeArmed) {
+              wipeArmed = true;
+              e.target.textContent = 'Klikněte znovu pro trvalé vymazání';
+              return;
+            }
+            state = createEmptyState();
+            saveState();
+            closeModal();
+            renderAll();
+            showToast('Všechna data byla vymazána');
+          });
+        }
+
+        document.getElementById('modalOverlay').classList.add('open');
+      }
+
+      function closeModal() {
+        document.getElementById('modalOverlay').classList.remove('open');
+        ui.modalMode = null;
+      }
+
+      document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+      document.getElementById('modalCancelBtn').addEventListener('click', closeModal);
+      document.getElementById('modalOverlay').addEventListener('click', (e) => {
+        if (e.target.id === 'modalOverlay') closeModal();
+      });
+
+      document.getElementById('modalForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (ui.modalMode === 'new_task') {
+          const title = document.getElementById('mtTitle').value.trim();
+          if (!title) return;
+          const dueDate = document.getElementById('mtDate').value || getTodayStr();
+          const newTask = {
+            id: 't_' + Date.now(),
+            title,
+            dueDate,
+            startTime: document.getElementById('mtTime').value || '',
+            duration: Number(document.getElementById('mtDuration').value) || 30,
+            type: document.getElementById('mtType').value || 'call',
+            projectId: document.getElementById('mtProject').value || null,
+            owner: document.getElementById('mtOwner').value.trim() || state.settings.userName,
+            notes: document.getElementById('mtNotes').value.trim(),
+            completed: false,
+            order: state.tasks.length,
+            createdAt: getTodayStr()
+          };
+          state.tasks.push(newTask);
+          saveState();
+          closeModal();
+          renderAll();
+          showToast(`Úkol „${title}“ vytvořen (${formatDateCZ(dueDate)})`);
+        } else if (ui.modalMode === 'new_project') {
+          const name = document.getElementById('mpName').value.trim();
+          if (!name) return;
+          state.projects.unshift({
+            id: 'p_' + Date.now(),
+            name,
+            qiName: document.getElementById('mpQi').value.trim(),
+            pohodaName: document.getElementById('mpPohoda').value.trim(),
+            companyId: document.getElementById('mpCompany').value || null,
+            value: Number(document.getElementById('mpValue').value) || 0,
+            nativeCurrency: document.getElementById('mpCurrency').value,
+            stage: document.getElementById('mpStage').value,
+            probability: Math.max(0, Math.min(100, Number(document.getElementById('mpProb').value) || 0)),
+            targetCloseDate: document.getElementById('mpCloseDate').value || '',
+            owner: document.getElementById('mpOwner').value.trim() || state.settings.userName,
+            nextStep: document.getElementById('mpNextStep').value.trim(),
+            notes: document.getElementById('mpNotes').value.trim()
+          });
+          saveState();
+          closeModal();
+          renderAll();
+          showToast(`Projekt „${name}“ vytvořen`);
+        } else if (ui.modalMode === 'new_company') {
+          const name = document.getElementById('mcName').value.trim();
+          if (!name) return;
+          state.companies.unshift({
+            id: 'co_' + Date.now(),
+            name,
+            ico: document.getElementById('mcIco').value.trim(),
+            dic: document.getElementById('mcDic').value.trim(),
+            notes: document.getElementById('mcNotes').value.trim()
+          });
+          saveState();
+          closeModal();
+          renderAll();
+          showToast(`Společnost „${name}“ přidána`);
+        } else if (ui.modalMode === 'new_contact') {
+          const name = document.getElementById('mkName').value.trim();
+          if (!name) return;
+          const compMode = document.querySelector('input[name="mkCompMode"]:checked')?.value || 'new';
+          let companyId = null;
+
+          if (compMode === 'existing') {
+            companyId = document.getElementById('mkExistingComp').value || null;
+          } else {
+            const newCompName = document.getElementById('mkNewCompName').value.trim();
+            if (newCompName) {
+              const newCompany = {
+                id: 'co_' + Date.now() + '_a',
+                name: newCompName,
+                ico: document.getElementById('mkNewCompIco').value.trim(),
+                dic: document.getElementById('mkNewCompDic').value.trim(),
+                notes: ''
+              };
+              state.companies.unshift(newCompany);
+              companyId = newCompany.id;
+            }
+          }
+
+          state.contacts.unshift({
+            id: 'ct_' + Date.now(),
+            name,
+            companyId,
+            role: document.getElementById('mkRole').value.trim(),
+            email: document.getElementById('mkEmail').value.trim(),
+            phone: document.getElementById('mkPhone').value.trim(),
+            notes: document.getElementById('mkNotes').value.trim()
+          });
+          saveState();
+          closeModal();
+          renderAll();
+          showToast(companyId && compMode === 'new' ? `Kontakt „${name}“ i nová firma byly uloženy` : `Kontakt „${name}“ uložen`);
+        } else if (ui.modalMode === 'profile') {
+          state.settings.userName = document.getElementById('profUserName').value.trim() || 'Správce (Autor)';
+          state.settings.quarterTargetCZK = Math.max(1000, Number(document.getElementById('profTarget').value) || 5000000);
+          saveState();
+          closeModal();
+          renderAll();
+          showToast('Nastavení profilu uloženo');
+        }
+      });
+
+      // ========================================================================
+      // GLOBÁLNÍ VYHLEDÁVÁNÍ (CTRL+K)
+      // ========================================================================
+      function openCmd() {
+        document.getElementById('cmdOverlay').classList.add('open');
+        const inp = document.getElementById('cmdInput');
+        inp.value = '';
+        renderCmdResults('');
+        setTimeout(() => inp.focus(), 20);
+      }
+
+      function closeCmd() {
+        document.getElementById('cmdOverlay').classList.remove('open');
+      }
+
+      function renderCmdResults(query) {
+        const q = query.trim().toLowerCase();
+        const res = document.getElementById('cmdResults');
+        let html = '';
+
+        const actions = [
+          { id: 'new_task', label: '+ Vytvořit nový úkol' },
+          { id: 'new_project', label: '+ Vytvořit nový projekt' },
+          { id: 'new_contact', label: '+ Vytvořit nový kontakt (+ firma)' },
+          { id: 'new_company', label: '+ Vytvořit novou společnost' }
+        ].filter(a => !q || a.label.toLowerCase().includes(q));
+
+        if (actions.length) {
+          html += `<div class="cmd-group">Rychlé akce</div>`;
+          html += actions.map(a => `<button class="cmd-item" data-cmd-act="${a.id}"><strong>${a.label}</strong><span style="font-size:11px; color:var(--text-light);">Akce</span></button>`).join('');
+        }
+
+        const projs = state.projects.filter(p =>
+          !q ||
+          (p.name || '').toLowerCase().includes(q) ||
+          (p.qiName || '').toLowerCase().includes(q) ||
+          (p.pohodaName || '').toLowerCase().includes(q)
+        ).slice(0, 6);
+        if (projs.length) {
+          html += `<div class="cmd-group">Projekty</div>`;
+          html += projs.map(p => `<button class="cmd-item" data-cmd-open="project:${p.id}"><span><strong>${escapeHtml(p.name)}</strong> ${p.qiName ? `<span class="code-badge qi">${escapeHtml(p.qiName)}</span>` : ''} ${p.pohodaName ? `<span class="code-badge pohoda">${escapeHtml(p.pohodaName)}</span>` : ''}</span><span class="tabular" style="font-size:11.5px; color:var(--text-muted);">${formatMoney(toActiveCurrency(p.value, p.nativeCurrency))}</span></button>`).join('');
+        }
+
+        const tasks = state.tasks.filter(t => !q || (t.title || '').toLowerCase().includes(q)).slice(0, 6);
+        if (tasks.length) {
+          html += `<div class="cmd-group">Úkoly</div>`;
+          html += tasks.map(t => `<button class="cmd-item" data-cmd-open="task:${t.id}"><span>${escapeHtml(t.title)}</span><span class="date-chip">📅 ${formatDateCZ(t.dueDate)}</span></button>`).join('');
+        }
+
+        const comps = state.companies.filter(c =>
+          !q ||
+          (c.name || '').toLowerCase().includes(q) ||
+          (c.ico || '').toLowerCase().includes(q) ||
+          (c.dic || '').toLowerCase().includes(q)
+        ).slice(0, 5);
+        if (comps.length) {
+          html += `<div class="cmd-group">Firmy</div>`;
+          html += comps.map(c => `<button class="cmd-item" data-cmd-open="company:${c.id}"><span><strong>${escapeHtml(c.name)}</strong></span><span class="tabular" style="font-size:11.5px; color:var(--text-muted);">${c.ico ? 'IČO: ' + escapeHtml(c.ico) : ''}</span></button>`).join('');
+        }
+
+        const cts = state.contacts.filter(c => !q || (c.name || '').toLowerCase().includes(q) || (c.email || '').toLowerCase().includes(q)).slice(0, 5);
+        if (cts.length) {
+          html += `<div class="cmd-group">Kontakty</div>`;
+          html += cts.map(c => `<button class="cmd-item" data-cmd-open="contact:${c.id}"><span><strong>${escapeHtml(c.name)}</strong> · ${escapeHtml(c.role || '')}</span><span style="font-size:11.5px; color:var(--text-muted);">${escapeHtml(c.email || '')}</span></button>`).join('');
+        }
+
+        res.innerHTML = html || `<div style="padding:24px; text-align:center; color:var(--text-muted);">Nic nenalezeno pro „${escapeHtml(query)}“.</div>`;
+
+        res.querySelectorAll('[data-cmd-act]').forEach(b => {
+          b.addEventListener('click', () => { closeCmd(); openModal(b.dataset.cmdAct); });
+        });
+        res.querySelectorAll('[data-cmd-open]').forEach(b => {
+          b.addEventListener('click', () => {
+            const [type, id] = b.dataset.cmdOpen.split(':');
+            closeCmd();
+            openDrawer(type, id);
+          });
+        });
+      }
+
+      document.getElementById('searchTriggerBtn').addEventListener('click', openCmd);
+      document.getElementById('cmdInput').addEventListener('input', (e) => renderCmdResults(e.target.value));
+      document.getElementById('cmdOverlay').addEventListener('click', (e) => {
+        if (e.target.id === 'cmdOverlay') closeCmd();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          openCmd();
+        } else if (e.key === 'Escape') {
+          closeCmd();
+          closeModal();
+          closeDrawer();
+          document.getElementById('ratePopover').classList.remove('open');
+        }
+      });
+
+      // ========================================================================
+      // EXPORT CSV, IMPORT JSON, MĚNA & OVLÁDÁNÍ
+      // ========================================================================
+      function downloadFile(content, filename, mime) {
+        const blob = new Blob([content], { type: mime });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      function exportProjectsCSV(list) {
+        const headers = ['Název projektu', 'QI název', 'Pohoda název', 'Společnost', 'IČO', 'Fáze', `Hodnota (${state.settings.currency})`, 'Pravděpodobnost %', 'Termín uzavření', 'Vlastník'];
+        const rows = list.map(p => {
+          const comp = getCompany(p.companyId);
+          return [
+            `"${(p.name || '').replace(/"/g, '""')}"`,
+            `"${(p.qiName || '').replace(/"/g, '""')}"`,
+            `"${(p.pohodaName || '').replace(/"/g, '""')}"`,
+            `"${comp ? comp.name.replace(/"/g, '""') : ''}"`,
+            `"${comp ? (comp.ico || '') : ''}"`,
+            `"${getStage(p.stage).label}"`,
+            Math.round(toActiveCurrency(p.value, p.nativeCurrency)),
+            p.probability || 0,
+            p.targetCloseDate || '',
+            `"${(p.owner || '').replace(/"/g, '""')}"`
+          ];
+        });
+        const csv = '\uFEFF' + [headers.join(';'), ...rows.map(r => r.join(';'))].join('\n');
+        downloadFile(csv, `outpost-projekty-${getTodayStr()}.csv`, 'text/csv;charset=utf-8;');
+        showToast(`Exportováno ${list.length} projektů do CSV`);
+      }
+
+      document.getElementById('jsonImportInput').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            const parsed = JSON.parse(reader.result);
+            if (parsed && Array.isArray(parsed.projects) && Array.isArray(parsed.tasks) && Array.isArray(parsed.companies) && Array.isArray(parsed.contacts)) {
+              state = parsed;
+              saveState();
+              closeModal();
+              renderAll();
+              showToast('Záloha dat byla úspěšně načtena');
+            } else {
+              showToast('Neplatný formát souboru zálohy');
+            }
+          } catch (err) {
+            showToast('Chyba při čtení JSON souboru');
+          }
+        };
+        reader.readAsText(file);
+        e.target.value = '';
+      });
+
+      document.getElementById('currCzkBtn').addEventListener('click', () => {
+        state.settings.currency = 'CZK';
+        saveState();
+        renderAll();
+      });
+      document.getElementById('currEurBtn').addEventListener('click', () => {
+        state.settings.currency = 'EUR';
+        saveState();
+        renderAll();
+      });
+
+      document.getElementById('rateBtn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.getElementById('rateInput').value = state.settings.exchangeRate;
+        document.getElementById('ratePopover').classList.toggle('open');
+      });
+      document.getElementById('rateCancelBtn').addEventListener('click', () => {
+        document.getElementById('ratePopover').classList.remove('open');
+      });
+      document.getElementById('rateSaveBtn').addEventListener('click', () => {
+        const val = parseFloat(document.getElementById('rateInput').value);
+        if (val > 0) {
+          state.settings.exchangeRate = val;
+          saveState();
+          document.getElementById('ratePopover').classList.remove('open');
+          renderAll();
+          showToast(`Kurz uložen: ${val.toFixed(2).replace('.', ',')} Kč/€`);
+        }
+      });
+
+      document.getElementById('topbarPrimaryCta').addEventListener('click', (e) => {
+        openModal(e.currentTarget.dataset.modal || 'new_task');
+      });
+
+      document.getElementById('openProfileModalBtn').addEventListener('click', () => openModal('profile'));
+
+      document.getElementById('mobileMenuBtn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.getElementById('sidebar').classList.toggle('mobile-open');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#ratePopover') && !e.target.closest('#rateBtn')) {
+          document.getElementById('ratePopover').classList.remove('open');
+        }
+        if (!e.target.closest('#sidebar') && !e.target.closest('#mobileMenuBtn')) {
+          document.getElementById('sidebar').classList.remove('mobile-open');
+        }
+      });
+
+      // ========================================================================
+      // HLAVNÍ RENDER
+      // ========================================================================
+      function renderAll() {
+        renderSidebar();
+        renderTopbar();
+        switch (ui.activeView) {
+          case 'tasks':     renderTasksView(); break;
+          case 'calendar':  renderCalendarView(); break;
+          case 'projects':  renderProjectsView(); break;
+          case 'companies': renderCompaniesView(); break;
+          case 'contacts':  renderContactsView(); break;
+          case 'forecast':  renderForecastView(); break;
+          default:          renderTasksView();
+        }
+      }
+
+      renderAll();
+    })();
+  </script>
+</body>
+</html>
